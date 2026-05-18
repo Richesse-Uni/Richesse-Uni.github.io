@@ -1,0 +1,24 @@
+---
+---
+@import url("https://fonts.googleapis.com/css?family=Montserrat");@font-face {
+    font-family: "Indivisa Text Sans-Regular";
+    src: url("../fonts/Indivisa Text Sans-Regular.ttf")
+}
+
+$family-primary: "Indivisa Text Sans-Regular",sans-serif;
+$primary: #ef2e31;
+$link: #ef2e31;
+// Import Main CSS file from theme
+@import "main";
+
+.navbar-item img {
+    max-height: 2.75rem;
+}
+
+.menu-label {
+    font-size : 1em;
+}
+
+.hero_image{
+ 
+}

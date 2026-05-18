@@ -1,0 +1,37 @@
+lang: fr
+title: Prénom NOM
+description: Template pour la création d'un repo type CV
+theme: bulma-clean-theme
+
+url: https://github.com/gorinje/craft-the-cv2
+
+force_theme: light
+permalink: pretty
+lang: fr
+theme_color: '#ef2e31'
+fixed_navbar: top
+show_logo: true
+
+collections:
+  products: 
+    output: true
+    layout: product
+    image: https://via.placeholder.com/800x600
+    show_sidebar: false
+
+plugins:
+  - jekyll-remote-include
+  
+exclude:
+  - node_modules/
+  - vendor/
+  - .bundle/
+  - .jekyll-cache/
+  - .devcontainer/
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - package-lock.json
+
+sass:
+  style: compressed
