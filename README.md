@@ -1,3 +1,4 @@
+[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=24051713)
 # Modèle de CV
 
 Template pour la création d'un CV type projet pour le MakerSpace. Ce template utilise le thème [bulma-clean-theme](https://github.com/chrisrhymes/bulma-clean-theme). Ce CV est personnalisable selon vos envies, vous trouverez sur le site [csrhymes](https://www.csrhymes.com/bulma-clean-theme/) d'autres exemples de disposition de contenu que vous pouvez facilement intégrer dans ce CV.
