@@ -9,15 +9,15 @@ hero_image_ratio: is-1by1
 robots: noindex 
 ---
 
-# Prénom NOM
-Elève ingénieur en [préciser sa spécialité]
+# Richesse OTSIE
+Elève ingénieur en bachelor systemes numerique et industielle]
 
 
-Disponible XX mois à partir de Date
+Disponible des le 06 à partir de Juin
 
-[Prenom.Nom[at]xxx.com](mailto:Prenom.Nom@xxx.com)
+[Richesse.otsie[at]etu.unilasalle.fr](mailto:richesse.otsie@xxx.fr)
 
-[LinkedIn](https://www.linkedin.com/in/Prenom.Nom)
+[LinkedIn](https://www.linkedin.com/in/Richesse.Otsie)
 
 Permis B, voiture
 
