@@ -10,7 +10,7 @@ robots: noindex
 ## Formation 
 
 `20XX – 20XX`
-**Nom de votre école**
+**UniLaSalle**
 
 Elève ingénieur en [préciser la spécialité]
 * Cours : préciser les cours en phase avec le poste visé
