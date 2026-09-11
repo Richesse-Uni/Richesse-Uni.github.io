@@ -3,13 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#1f2937">
+    <meta name="theme-color" content="{% if page.theme_color %}{{ page.theme_color }}{% else %}#1f2937{% endif %}">
     <title>{{ page.title }}{% if site.title %} · {{ site.title }}{% endif %}</title>
     {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
     <link
         rel="shortcut icon"
         type="image/png"
-        {% if site.favicon %}
+        {% if page.favicon %}
+            href="{{ page.favicon | relative_url }}"
+        {% elsif site.favicon %}
             href="{{ site.favicon | relative_url }}"
         {% else %}
             href="{{ site.baseurl }}/favicon.png"
@@ -18,7 +20,7 @@
     {% if page.robots %}<meta name="robots" content="{{ page.robots }}">{% endif %}
     {% if page.pwa_manifest %}
     <link rel="manifest" href="{{ page.pwa_manifest | relative_url }}">
-    <link rel="apple-touch-icon" href="{{ site.baseurl }}/assets/imgs/pwa/fiche-icon-192.png">
+    <link rel="apple-touch-icon" href="{% if page.favicon %}{{ page.favicon | relative_url }}{% else %}{{ site.baseurl }}/assets/imgs/pwa/fiche-icon-192.png{% endif %}">
     {% endif %}
 </head>
 <body>

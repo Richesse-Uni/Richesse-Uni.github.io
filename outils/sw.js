@@ -1,12 +1,13 @@
 // Service worker de l'outil "Fiche d'Exploitation Journalière" — The World's-SHOP.
 // Stratégie : réponse depuis le cache si disponible (rapide + hors-ligne),
 // tout en rafraîchissant le cache en arrière-plan (stale-while-revalidate).
-var CACHE_NAME = 'worldsshop-fiche-v1';
+var CACHE_NAME = 'worldsshop-fiche-v2';
 var PRECACHE_URLS = [
   '/outils/fiche-exploitation-journaliere/',
   '/outils/manifest.webmanifest',
   '/assets/imgs/pwa/fiche-icon-192.png',
-  '/assets/imgs/pwa/fiche-icon-512.png'
+  '/assets/imgs/pwa/fiche-icon-512.png',
+  '/assets/imgs/pwa/blp-logo.png'
 ];
 
 self.addEventListener('install', function(event){
