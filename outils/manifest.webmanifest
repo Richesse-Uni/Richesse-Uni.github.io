@@ -1,6 +1,6 @@
 {
-  "name": "Fiche d'Exploitation Journalière — The World's-SHOP",
-  "short_name": "Fiche WS-SHOP",
+  "name": "Fiche d'Exploitation Journalière — Les Boutiques Louis-Prisque",
+  "short_name": "Fiche LBP",
   "description": "Pointage, stock, ventes, dépenses et caisse — application web installable, avec sauvegarde locale et usage hors-ligne.",
   "start_url": "/outils/fiche-exploitation-journaliere/",
   "scope": "/outils/",
