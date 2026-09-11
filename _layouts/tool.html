@@ -16,6 +16,10 @@
         {% endif %}
     >
     {% if page.robots %}<meta name="robots" content="{{ page.robots }}">{% endif %}
+    {% if page.pwa_manifest %}
+    <link rel="manifest" href="{{ page.pwa_manifest | relative_url }}">
+    <link rel="apple-touch-icon" href="{{ site.baseurl }}/assets/imgs/pwa/fiche-icon-192.png">
+    {% endif %}
 </head>
 <body>
 {{ content }}

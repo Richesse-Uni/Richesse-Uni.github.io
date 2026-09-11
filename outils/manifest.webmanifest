@@ -1,0 +1,16 @@
+{
+  "name": "Fiche d'Exploitation Journalière — The World's-SHOP",
+  "short_name": "Fiche WS-SHOP",
+  "description": "Pointage, stock, ventes, dépenses et caisse — application web installable, avec sauvegarde locale et usage hors-ligne.",
+  "start_url": "/outils/fiche-exploitation-journaliere/",
+  "scope": "/outils/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#111827",
+  "theme_color": "#1f2937",
+  "lang": "fr",
+  "icons": [
+    { "src": "/assets/imgs/pwa/fiche-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/imgs/pwa/fiche-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
