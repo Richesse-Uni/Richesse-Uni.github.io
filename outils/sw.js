@@ -1,7 +1,10 @@
 // Service worker de l'outil "Fiche d'Exploitation Journalière" — The World's-SHOP.
-// Stratégie : réponse depuis le cache si disponible (rapide + hors-ligne),
-// tout en rafraîchissant le cache en arrière-plan (stale-while-revalidate).
-var CACHE_NAME = 'worldsshop-fiche-v2';
+// Stratégie : la page HTML (navigation) privilégie toujours le réseau — l'outil évolue
+// souvent et un cache-first la garderait figée sur une ancienne version tant que la
+// mise à jour du service worker ne s'est pas propagée (particulièrement lent en PWA
+// installée sur mobile). Le cache ne sert de secours que hors-ligne.
+// Les autres ressources (icônes, manifeste) restent en stale-while-revalidate.
+var CACHE_NAME = 'worldsshop-fiche-v3';
 var PRECACHE_URLS = [
   '/outils/fiche-exploitation-journaliere/',
   '/outils/manifest.webmanifest',
@@ -28,6 +31,18 @@ self.addEventListener('activate', function(event){
 
 self.addEventListener('fetch', function(event){
   if(event.request.method !== 'GET') return;
+
+  if(event.request.mode === 'navigate'){
+    event.respondWith(
+      fetch(event.request).then(function(networkResponse){
+        var copy = networkResponse.clone();
+        caches.open(CACHE_NAME).then(function(cache){ cache.put(event.request, copy); });
+        return networkResponse;
+      }).catch(function(){ return caches.match(event.request); })
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then(function(cached){
       var fetchPromise = fetch(event.request).then(function(networkResponse){
