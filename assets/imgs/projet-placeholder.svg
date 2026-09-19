@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Aperçu non disponible">
+  <rect width="800" height="600" fill="#e5e7eb"/>
+  <g fill="#9ca3af">
+    <rect x="320" y="220" width="160" height="120" rx="8" fill="none" stroke="#9ca3af" stroke-width="6"/>
+    <circle cx="360" cy="255" r="12"/>
+    <path d="M320 330 L370 280 L410 310 L445 270 L480 330 Z"/>
+  </g>
+  <text x="400" y="390" font-family="Arial, sans-serif" font-size="22" fill="#6b7280" text-anchor="middle">Aperçu non disponible</text>
+</svg>
