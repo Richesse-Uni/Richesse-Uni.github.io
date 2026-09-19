@@ -39,7 +39,7 @@
                         </div>
                         <div class="column is-6-tablet is-6-desktop is-relative">
                             <figure class="image {{ page.hero_image_ratio | default: 'is-4by3' }}">
-                                <img class="hero_image"  src="{{ page.hero_image }}" alt="{{ page.hero_image_alt }}">
+                                <img class="hero_image"  src="{% if page.hero_image contains '://' %}{{ page.hero_image }}{% else %}{{ page.hero_image | relative_url }}{% endif %}" alt="{{ page.hero_image_alt }}">
                             </figure>
                         </div>
                     </div>
