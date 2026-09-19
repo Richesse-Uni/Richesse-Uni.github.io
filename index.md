@@ -12,7 +12,7 @@ robots: noindex
 # Richesse OTSIE
 Étudiant en 3ème année de Bachelor en systèmes numériques et technologies innovantes, à la recherche d'une alternance orientée sur l'amélioration continue, Lean Manufacturing et Supply Chain.
 
-[Richesse.otsie[at]etu.unilasalle.fr](mailto:richesse.otsie@xxx.fr)
+[otsierichesse20@gmail.com](mailto:otsierichesse20@gmail.com)
 
 [LinkedIn](https://www.linkedin.com/in/Richesse.Otsie)
 
