@@ -14,7 +14,7 @@ robots: noindex
 
 [otsierichesse20@gmail.com](mailto:otsierichesse20@gmail.com)
 
-[LinkedIn](https://www.linkedin.com/in/Richesse.Otsie)
+[LinkedIn](https://www.linkedin.com/in/richesse-otsie-14b612268)
 
 Permis B, voiture
 
