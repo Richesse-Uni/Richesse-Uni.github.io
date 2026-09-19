@@ -12,11 +12,19 @@ theme_color: '#ef2e31'
 fixed_navbar: top
 
 collections:
-  products: 
+  products:
     output: true
     layout: product
-    image: https://via.placeholder.com/800x600
     show_sidebar: false
+
+# Image par défaut pour tout document de la collection "products" qui n'a pas son propre champ
+# `image:` en front matter (ex. pas encore de vraie capture d'écran disponible).
+defaults:
+  - scope:
+      path: ""
+      type: products
+    values:
+      image: /assets/imgs/projet-placeholder.svg
 
 plugins:
   - jekyll-remote-include
