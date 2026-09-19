@@ -1,7 +1,7 @@
 ---
 layout: promo-page
 title: Qui suis-je?
-description: "Ceci est un exemple de CV que vous pouvez générer par vous-même"
+description: "Étudiant en 3ème année de Bachelor en systèmes numériques et technologies innovantes, à la recherche d'une alternance orientée sur l'amélioration continue, Lean Manufacturing et Supply Chain."
 menubar: menu_bar
 hero_image: assets/imgs/image.png
 hero_image_alt: Ma photo
