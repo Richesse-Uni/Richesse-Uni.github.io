@@ -4,7 +4,7 @@ layout: default
 <div class="columns is-multiline">
     <div class="column is-6">
         <figure class="image is-4by3">
-            <img src="{{ page.image }}">
+            <img src="{% if page.image contains '://' %}{{ page.image }}{% else %}{{ page.image | relative_url }}{% endif %}">
         </figure>
     </div>
 

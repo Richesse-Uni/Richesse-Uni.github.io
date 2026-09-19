@@ -20,7 +20,7 @@ show_sidebar: false
                     {% if product.image %}
                         <div class="card-image">
                             <figure class="image is-4by3">
-                                <img src="{{ product.image }}" alt="{{ product.title }}">
+                                <img src="{% if product.image contains '://' %}{{ product.image }}{% else %}{{ product.image | relative_url }}{% endif %}" alt="{{ product.title }}">
                             </figure>
                         </div>
                     {% endif %}
