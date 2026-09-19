@@ -10,10 +10,7 @@ robots: noindex
 ---
 
 # Richesse OTSIE
-Elève ingénieur en bachelor systemes numerique et industielle]
-
-
-Disponible des le 06 à partir de Juin
+Étudiant en 3ème année de Bachelor en systèmes numériques et technologies innovantes, à la recherche d'une alternance orientée sur l'amélioration continue, Lean Manufacturing et Supply Chain.
 
 [Richesse.otsie[at]etu.unilasalle.fr](mailto:richesse.otsie@xxx.fr)
 
