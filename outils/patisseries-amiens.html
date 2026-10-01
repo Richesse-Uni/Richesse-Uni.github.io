@@ -1,0 +1,669 @@
+---
+layout: tool
+title: "Gâteau d'anniversaire à Amiens — planificateur"
+description: "Annuaire des pâtisseries d'Amiens et planificateur d'anniversaire : à partir d'une date d'anniversaire, l'outil propose la pâtisserie la plus adaptée et calcule la date limite de commande pour que le gâteau soit prêt à temps."
+permalink: /outils/patisseries-amiens/
+robots: noindex
+theme_color: "#7a2e4a"
+---
+<style>
+  :root{
+    --ink:#2a1f24; --muted:#6f6168; --bg:#faf5f2; --paper:#ffffff; --line:#eadfd9;
+    --accent:#7a2e4a; --accent-soft:#f6e7ec; --accent-text:#7a2e4a;
+    --ok:#1d7a46; --ok-soft:#e5f4ea; --warn:#a15c00; --warn-soft:#fdf1dc; --bad:#b42318; --bad-soft:#fde8e6;
+    --header:#7a2e4a; --radius:14px; --shadow:0 2px 10px rgba(60,20,35,.07);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#f1e8ec; --muted:#b5a5ad; --bg:#151013; --paper:#211a1e; --line:#3a2e34;
+      --accent:#c9668b; --accent-soft:#3a2230; --accent-text:#f0a6c2;
+      --ok:#5fd394; --ok-soft:#173226; --warn:#f2b552; --warn-soft:#3a2b12; --bad:#ff8a80; --bad-soft:#3d1b1a;
+      --header:#4a1d30; --shadow:0 2px 10px rgba(0,0,0,.4);
+      color-scheme:dark;
+    }
+  }
+  *{box-sizing:border-box;}
+  [hidden]{display:none !important;}
+  body{margin:0;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-text);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  header.top{background:var(--header);color:#fff;padding:1.4rem 1rem 1.2rem;}
+  header.top .wrap{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:flex-end;justify-content:space-between;}
+  header.top h1{margin:0;font-size:1.5rem;letter-spacing:-.01em;}
+  header.top p{margin:.25rem 0 0;opacity:.9;font-size:.95rem;}
+  header.top a.back{color:#fff;opacity:.85;font-size:.85rem;text-decoration:none;}
+  header.top a.back:hover{opacity:1;text-decoration:underline;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 16px;}
+  nav.tabs{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);}
+  nav.tabs .wrap{display:flex;gap:.25rem;overflow-x:auto;}
+  nav.tabs button{appearance:none;border:0;background:none;color:var(--muted);font:inherit;font-weight:600;
+    padding:.85rem .9rem;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;}
+  nav.tabs button[aria-selected="true"]{color:var(--accent-text);border-bottom-color:var(--accent);}
+  main{padding:1.2rem 0 3rem;}
+  section.panel[hidden]{display:none;}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.1rem 1.2rem;margin-bottom:1rem;}
+  .card h2{margin:0 0 .8rem;font-size:1.15rem;}
+  .card h3{margin:0 0 .4rem;font-size:1.05rem;}
+  .grid{display:grid;gap:.8rem 1rem;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));}
+  label.f{display:flex;flex-direction:column;gap:.3rem;font-size:.85rem;font-weight:600;color:var(--muted);}
+  input,select,textarea{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:.55rem .65rem;min-width:0;width:100%;}
+  input:focus,select:focus,textarea:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--accent-soft);}
+  .row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;}
+  .btn{appearance:none;border:1px solid var(--accent);background:var(--accent);color:#fff;font:inherit;font-weight:600;
+    border-radius:10px;padding:.55rem .95rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;}
+  .btn.ghost{background:transparent;color:var(--accent-text);}
+  .btn.small{padding:.3rem .6rem;font-size:.85rem;}
+  .btn:hover{filter:brightness(1.07);}
+  .muted{color:var(--muted);}
+  .small{font-size:.85rem;}
+  .summary{display:grid;gap:.8rem;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-bottom:1rem;}
+  .stat{background:var(--accent-soft);border-radius:12px;padding:.8rem 1rem;}
+  .stat b{display:block;font-size:1.35rem;color:var(--accent-text);}
+  .stat span{font-size:.85rem;color:var(--muted);}
+  .shop{display:grid;grid-template-columns:auto 1fr auto;gap:.3rem 1rem;align-items:start;padding:1rem 0;border-top:1px solid var(--line);}
+  .shop:first-of-type{border-top:0;}
+  .rank{width:2.1rem;height:2.1rem;border-radius:50%;background:var(--accent-soft);color:var(--accent-text);font-weight:700;display:grid;place-items:center;}
+  .shop.best .rank{background:var(--accent);color:#fff;}
+  .shop .meta{font-size:.88rem;color:var(--muted);}
+  .tags{display:flex;flex-wrap:wrap;gap:.3rem;margin:.35rem 0;}
+  .tag{font-size:.75rem;padding:.12rem .5rem;border-radius:999px;background:var(--accent-soft);color:var(--accent-text);}
+  .pill{display:inline-block;font-size:.8rem;font-weight:700;padding:.2rem .6rem;border-radius:999px;white-space:nowrap;}
+  .pill.ok{background:var(--ok-soft);color:var(--ok);}
+  .pill.warn{background:var(--warn-soft);color:var(--warn);}
+  .pill.bad{background:var(--bad-soft);color:var(--bad);}
+  .deadline{text-align:right;min-width:9rem;}
+  .deadline b{display:block;font-size:.95rem;}
+  ol.timeline{list-style:none;margin:.6rem 0 0;padding:0 0 0 1rem;border-left:2px solid var(--line);}
+  ol.timeline li{position:relative;padding:.15rem 0 .55rem .6rem;font-size:.9rem;}
+  ol.timeline li::before{content:"";position:absolute;left:-1.42rem;top:.5rem;width:.7rem;height:.7rem;border-radius:50%;background:var(--paper);border:2px solid var(--accent);}
+  ol.timeline li.past::before{background:var(--line);border-color:var(--line);}
+  ol.timeline li.past{color:var(--muted);text-decoration:line-through;}
+  details.more summary{cursor:pointer;font-size:.85rem;color:var(--accent-text);margin-top:.4rem;}
+  .stars button{appearance:none;border:0;background:none;font-size:1.15rem;cursor:pointer;padding:0 .05rem;color:var(--line);}
+  .stars button.on{color:#e0a100;}
+  .notice{background:var(--warn-soft);color:var(--ink);border-radius:12px;padding:.75rem 1rem;font-size:.88rem;margin-bottom:1rem;}
+  .notice b{color:var(--warn);}
+  table{width:100%;border-collapse:collapse;font-size:.92rem;}
+  th,td{text-align:left;padding:.55rem .4rem;border-top:1px solid var(--line);vertical-align:top;}
+  th{color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;border-top:0;}
+  .empty{padding:1.2rem;text-align:center;color:var(--muted);}
+  .toast{position:fixed;left:50%;bottom:1.2rem;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:.6rem 1rem;border-radius:10px;font-size:.9rem;opacity:0;transition:opacity .2s;pointer-events:none;}
+  .toast.show{opacity:1;}
+  @media (max-width:640px){
+    .shop{grid-template-columns:auto 1fr;}
+    .deadline{grid-column:2;text-align:left;}
+    th.hide-m,td.hide-m{display:none;}
+  }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div>
+      <h1>🎂 Gâteau d'anniversaire à Amiens</h1>
+      <p>Trouvez la bonne pâtisserie et commandez à temps — l'anniversaire se prépare quelques jours plus tôt.</p>
+    </div>
+    <a class="back" href="{{ site.baseurl }}/realisations/">← Retour au portfolio</a>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap" role="tablist">
+    <button role="tab" aria-selected="true" aria-controls="p-plan" id="t-plan">Planifier</button>
+    <button role="tab" aria-selected="false" aria-controls="p-carnet" id="t-carnet">Mes anniversaires</button>
+    <button role="tab" aria-selected="false" aria-controls="p-annuaire" id="t-annuaire">Pâtisseries</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ============ PLANIFIER ============ -->
+  <section class="panel" id="p-plan" role="tabpanel" aria-labelledby="t-plan">
+    <div class="card">
+      <h2>1. L'anniversaire</h2>
+      <form id="planForm" class="grid" autocomplete="off">
+        <label class="f">Prénom
+          <input id="pPrenom" placeholder="ex. Camille">
+        </label>
+        <label class="f">Date d'anniversaire
+          <input id="pDate" type="date" required>
+        </label>
+        <label class="f">Date de la fête
+          <select id="pFete">
+            <option value="jour">Le jour même</option>
+            <option value="samedi">Le samedi précédent</option>
+            <option value="custom">Autre date…</option>
+          </select>
+        </label>
+        <label class="f" id="pCustomWrap" hidden>Fête le
+          <input id="pCustom" type="date">
+        </label>
+        <label class="f">Type de gâteau
+          <select id="pType"></select>
+        </label>
+        <label class="f">Nombre de personnes
+          <input id="pPers" type="number" min="1" max="300" value="10">
+        </label>
+        <label class="f">Récupération
+          <select id="pMode">
+            <option value="retrait">Retrait en boutique</option>
+            <option value="livraison">Livraison souhaitée</option>
+          </select>
+        </label>
+        <label class="f">Marge de sécurité (jours)
+          <input id="pMarge" type="number" min="0" max="14" value="2">
+        </label>
+      </form>
+      <div class="row" style="margin-top:.9rem">
+        <button class="btn ghost small" id="pSave" type="button">＋ Enregistrer dans mes anniversaires</button>
+      </div>
+    </div>
+
+    <div id="planResult"></div>
+  </section>
+
+  <!-- ============ CARNET ============ -->
+  <section class="panel" id="p-carnet" role="tabpanel" aria-labelledby="t-carnet" hidden>
+    <div class="card">
+      <h2>Mes anniversaires à venir</h2>
+      <p class="muted small">Les anniversaires sont enregistrés uniquement sur cet appareil. Pour chacun, la date limite de commande est calculée à partir du jour de la fête, du délai indicatif du type de gâteau et de 2 jours de marge.</p>
+      <div id="carnetList"></div>
+    </div>
+    <div class="card">
+      <h3>Ajouter rapidement</h3>
+      <form id="quickForm" class="grid" autocomplete="off">
+        <label class="f">Prénom <input id="qPrenom" required></label>
+        <label class="f">Date d'anniversaire <input id="qDate" type="date" required></label>
+        <label class="f">Type de gâteau <select id="qType"></select></label>
+        <label class="f">Fête <select id="qFete"><option value="jour">Le jour même</option><option value="samedi">Le samedi précédent</option></select></label>
+        <div class="f" style="justify-content:flex-end"><button class="btn" type="submit">Ajouter</button></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ ANNUAIRE ============ -->
+  <section class="panel" id="p-annuaire" role="tabpanel" aria-labelledby="t-annuaire" hidden>
+    <div class="notice">
+      <b>À vérifier avant de commander :</b> adresses et téléphones proviennent d'annuaires publics (PagesJaunes, offices de tourisme, sites des boutiques). Les délais de commande affichés sont des <b>estimations</b> par type de gâteau. Vous pouvez saisir pour chaque boutique le délai réel, la livraison et votre propre note : ils seront pris en compte dans les recommandations.
+    </div>
+    <div class="card">
+      <div class="row" style="justify-content:space-between;margin-bottom:.6rem">
+        <h2 style="margin:0">Pâtisseries d'Amiens</h2>
+        <input id="aSearch" type="search" placeholder="Rechercher (nom, rue, spécialité)…" style="max-width:280px">
+      </div>
+      <div id="annuaireList"></div>
+    </div>
+    <div class="card">
+      <h3>Ajouter une pâtisserie</h3>
+      <form id="addShopForm" class="grid" autocomplete="off">
+        <label class="f">Nom <input id="sNom" required></label>
+        <label class="f">Adresse <input id="sAdr" placeholder="n° rue, 80000 Amiens"></label>
+        <label class="f">Téléphone <input id="sTel" type="tel"></label>
+        <label class="f">Spécialités
+          <select id="sSpec" multiple size="3"></select>
+        </label>
+        <div class="f" style="justify-content:flex-end"><button class="btn" type="submit">Ajouter</button></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---------- Données ---------- */
+
+  // Types de gâteau et délai de commande indicatif (jours avant le retrait).
+  // Valeurs prudentes, habituelles chez les artisans ; elles sont remplacées par
+  // le délai propre à une boutique lorsqu'il a été renseigné dans l'annuaire.
+  const TYPES = {
+    classique: { label:'Entremets / gâteau classique', delai:3 },
+    number:    { label:'Number cake / letter cake', delai:5 },
+    design:    { label:'Cake design personnalisé', delai:14 },
+    chocolat:  { label:'Chocolat / macarons', delai:3 },
+    allergies: { label:'Sans allergènes / régime spécial', delai:7 }
+  };
+  const GROS_EVENEMENT = 20;   // au-delà, délai allongé
+  const BONUS_GROS = 3;
+
+  // Sources : PagesJaunes, amiens-tourisme.com, somme-tourisme.com, sites des boutiques (2026).
+  const BASE_SHOPS = [
+    { id:'trogneux', nom:'Jean Trogneux', genre:'Chocolatier · pâtissier',
+      adresse:'1 rue Delambre, 80000 Amiens', tel:'03 22 71 17 17',
+      spec:['chocolat','classique'],
+      info:"Maison fondée en 1872, créatrice du macaron d'Amiens. Plusieurs boutiques en ville, dont une sur le parvis de la cathédrale." },
+    { id:'lalie', nom:'Lalie Pâtisse', genre:'Pâtisserie sur commande · cake design',
+      adresse:'49 rue Camille Desmoulins, 80000 Amiens', tel:'06 99 67 04 85',
+      spec:['design','allergies','number','classique'],
+      info:"Gâteaux sur mesure pour anniversaires, baptêmes et mariages ; spécialisée aussi dans le « sans allergènes ». Retrait sur place." },
+    { id:'epicuriens', nom:'Les Épicuriens', genre:'Boulangerie · pâtisserie',
+      adresse:'23 rue Saint-Fuscien, 80000 Amiens', tel:'03 22 71 02 35',
+      spec:['classique','number'], fermeture:[2],
+      info:"« Meilleure boulangerie des Hauts-de-France » 2024 (M6). Number cakes pour les fêtes. Fermé le mardi, ouvert le dimanche matin." },
+    { id:'margot', nom:'Les Gâteaux de Margot', genre:'Pâtisserie',
+      adresse:'2 rue Henri Barbusse, 80000 Amiens', tel:'',
+      spec:['classique'],
+      info:"Pâtisserie artisanale : recettes créatives et élégantes." },
+    { id:'sogateaux', nom:"So'Gâteaux", genre:'Pâtisserie · gâteaux événementiels',
+      adresse:'11 rue Saint-Germain, 80000 Amiens', tel:'03 22 46 14 58',
+      spec:['classique','number'],
+      info:"Gâteaux gourmands pour les événements." },
+    { id:'naturecacao', nom:'Nature de Cacao', genre:'Pâtisserie · chocolaterie',
+      adresse:'11 rue de Metz, 80000 Amiens', tel:'',
+      spec:['chocolat','classique'],
+      info:"Pâtisserie artisanale, large choix de chocolats et confiseries." },
+    { id:'tropezin', nom:"Tropez'In", genre:'Pâtisserie',
+      adresse:'7 rue Gresset, 80000 Amiens', tel:'',
+      spec:['classique'],
+      info:"Pâtisseries aux saveurs originales et naturelles." },
+    { id:'croustillante', nom:'La Croustillante', genre:'Boulangerie · pâtisserie',
+      adresse:'13 rue Gaulthier de Rumilly, 80000 Amiens', tel:'',
+      spec:['classique'],
+      info:"Pâtisseries sur commande pour les demandes spécifiques." }
+  ];
+
+  /* ---------- Stockage local (tolérant aux navigateurs qui le bloquent) ---------- */
+  const KEY = 'patisseries-amiens-v1';
+  function load(){
+    try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; }
+  }
+  const state = Object.assign({ prefs:{}, custom:[], carnet:[], plan:null }, load());
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){}
+  }
+
+  function shops(){ return BASE_SHOPS.concat(state.custom); }
+  function pref(id){ return state.prefs[id] || (state.prefs[id] = {}); }
+
+  /* ---------- Dates (toujours en heure locale) ---------- */
+  const DAY = 86400000;
+  function today(){ const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+  function parseISO(s){ if(!s) return null; const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d); }
+  function toISO(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+  function addDays(d, n){ return new Date(d.getFullYear(), d.getMonth(), d.getDate()+n); }
+  function diff(a, b){ return Math.round((a - b) / DAY); }
+  function fmt(d, opts){ return d.toLocaleDateString('fr-FR', opts || { weekday:'long', day:'numeric', month:'long' }); }
+  function fmtShort(d){ return fmt(d, { weekday:'short', day:'numeric', month:'short' }); }
+
+  // Prochaine occurrence d'un anniversaire (29 février → 28 février les années non bissextiles).
+  function nextBirthday(dateISO){
+    const b = parseISO(dateISO), t = today();
+    for (let y = t.getFullYear(); ; y++){
+      let d = new Date(y, b.getMonth(), b.getDate());
+      if (d.getMonth() !== b.getMonth()) d = new Date(y, b.getMonth()+1, 0);
+      if (d >= t) return d;
+    }
+  }
+  function ageAt(dateISO, when){
+    const b = parseISO(dateISO);
+    const a = when.getFullYear() - b.getFullYear();
+    return a > 0 && a < 120 ? a : null;
+  }
+  function saturdayBefore(d){
+    const back = (d.getDay() + 1) % 7;   // samedi = 6 ; si d est un samedi → 0
+    return addDays(d, -back);
+  }
+  function rel(n){
+    if (n === 0) return "aujourd'hui";
+    if (n === 1) return 'demain';
+    if (n === -1) return 'hier';
+    return n > 0 ? 'dans ' + n + ' jours' : 'il y a ' + (-n) + ' jours';
+  }
+
+  /* ---------- Calcul du planning pour une boutique ---------- */
+  function delaiFor(shop, type, pers){
+    const p = pref(shop.id);
+    if (p.delai !== undefined && p.delai !== '' && p.delai !== null) return { jours:+p.delai, confirme:true };
+    return { jours: TYPES[type].delai + (pers > GROS_EVENEMENT ? BONUS_GROS : 0), confirme:false };
+  }
+
+  function planFor(shop, req){
+    const t = today();
+    let retrait = req.fete;
+    let decale = false;
+    const ferme = shop.fermeture || [];
+    // Si la boutique est fermée le jour J, on récupère la veille (jusqu'à 2 jours en arrière).
+    for (let i = 0; i < 3 && ferme.indexOf(retrait.getDay()) !== -1; i++){ retrait = addDays(retrait, -1); decale = true; }
+
+    const d = delaiFor(shop, req.type, req.pers);
+    const limite = addDays(retrait, -(d.jours + req.marge));
+    const limiteStricte = addDays(retrait, -d.jours);
+    const reste = diff(limite, t);
+    const resteStrict = diff(limiteStricte, t);
+
+    let statut;
+    if (diff(retrait, t) < 0) statut = { cls:'bad', txt:'Date passée' };
+    else if (resteStrict < 0) statut = { cls:'bad', txt:'Trop tard' };
+    else if (reste < 0) statut = { cls:'warn', txt:'Urgent — hors marge' };
+    else if (reste <= 2) statut = { cls:'warn', txt:'À commander ' + rel(reste) };
+    else statut = { cls:'ok', txt:'Dans les temps' };
+
+    // Score : adéquation au type de gâteau, faisabilité, préférences personnelles.
+    const p = pref(shop.id);
+    let score = 0;
+    const spec = shop.spec || [];
+    if (spec.indexOf(req.type) !== -1) score += 40;
+    else if (spec.indexOf('classique') !== -1) score += 10;
+    if (statut.cls === 'ok') score += 30; else if (statut.cls === 'warn') score += 10; else score -= 100;
+    if (req.mode === 'livraison'){
+      if (p.livraison === 'oui') score += 20;
+      else if (p.livraison === 'non') score -= 25;
+    }
+    if (decale) score -= 5;
+    if (p.note) score += p.note * 6;
+    if (p.favori) score += 10;
+    if (d.confirme) score += 5;
+
+    return { shop, retrait, decale, delai:d, limite, limiteStricte, reste, statut, score };
+  }
+
+  function readPlan(){
+    const date = $('#pDate').value;
+    if (!date) return null;
+    const anniv = nextBirthday(date);
+    let fete = anniv;
+    const mode = $('#pFete').value;
+    if (mode === 'samedi') fete = saturdayBefore(anniv);
+    if (mode === 'custom' && $('#pCustom').value) fete = parseISO($('#pCustom').value);
+    return {
+      prenom: $('#pPrenom').value.trim(),
+      date, anniv, fete, feteMode: mode,
+      type: $('#pType').value,
+      pers: Math.max(1, +$('#pPers').value || 1),
+      mode: $('#pMode').value,
+      marge: Math.max(0, +$('#pMarge').value || 0)
+    };
+  }
+
+  /* ---------- Rendu : Planifier ---------- */
+  function renderPlan(){
+    const req = readPlan();
+    const out = $('#planResult');
+    persistPlanForm();
+    if (!req){
+      out.innerHTML = '<div class="card empty">Indiquez une date d\'anniversaire pour voir les pâtisseries recommandées et la date limite de commande.</div>';
+      return;
+    }
+    const t = today();
+    const res = shops().map(s => planFor(s, req)).sort((a,b) => b.score - a.score || a.limite - b.limite);
+    const best = res[0];
+    const age = ageAt(req.date, req.anniv);
+    const qui = req.prenom ? esc(req.prenom) : 'la personne';
+
+    let html = '<div class="summary">' +
+      stat(fmt(req.anniv), 'Anniversaire de ' + qui + (age ? ' (' + age + ' ans)' : '') + ' — ' + rel(diff(req.anniv, t))) +
+      stat(fmt(req.fete), 'Jour de la fête — ' + rel(diff(req.fete, t))) +
+      stat(fmt(best.limite), 'Commander au plus tard chez ' + esc(best.shop.nom) + ' — ' + rel(best.reste)) +
+      '</div>';
+
+    if (diff(req.fete, t) < 0){
+      html += '<div class="notice"><b>La date de fête choisie est déjà passée.</b> Choisissez « Le jour même » ou une autre date.</div>';
+    }
+    if (req.mode === 'livraison'){
+      html += '<div class="notice"><b>Livraison :</b> la plupart des artisans d\'Amiens fonctionnent en retrait en boutique. Demandez-la au moment de la commande et indiquez la réponse dans l\'onglet Pâtisseries (« Livre : oui/non ») : les boutiques qui livrent remonteront dans le classement. Sinon, prévoyez un retrait la veille ou le matin même.</div>';
+    }
+
+    html += '<div class="card"><h2>2. Pâtisseries recommandées</h2>' +
+      '<p class="muted small" style="margin-top:-.4rem">Classement selon le type de gâteau (' + esc(TYPES[req.type].label.toLowerCase()) + '), le temps restant pour commander' +
+      (req.mode === 'livraison' ? ', la livraison' : '') + ' et vos notes personnelles.</p>';
+    res.forEach((r, i) => { html += shopRow(r, i, req); });
+    html += '</div>';
+    out.innerHTML = html;
+
+    out.querySelectorAll('[data-ics]').forEach(b => b.addEventListener('click', () => {
+      const r = res.find(x => x.shop.id === b.dataset.ics);
+      downloadICS(r, req);
+    }));
+  }
+
+  function stat(big, small){ return '<div class="stat"><b>' + esc(big) + '</b><span>' + small + '</span></div>'; }
+
+  function shopRow(r, i, req){
+    const s = r.shop, t = today();
+    const contact = addDays(r.limite, -3) > t ? addDays(r.limite, -3) : t;
+    const steps = [
+      { d: contact, txt: 'Appeler ' + esc(s.nom) + ' : disponibilité, parfum, prix' + (req.mode === 'livraison' ? ', livraison possible ?' : '') },
+      { d: r.limite, txt: '<b>Date limite de commande</b> (délai ' + r.delai.jours + ' j' + (r.delai.confirme ? ' confirmé' : ' estimé') + (req.marge ? ' + marge ' + req.marge + ' j' : '') + ')' },
+      { d: addDays(r.retrait, -2) > r.limite ? addDays(r.retrait, -2) : null, txt: 'Rappeler pour confirmer la commande' },
+      { d: r.retrait, txt: (req.mode === 'livraison' ? 'Livraison / retrait' : 'Retrait du gâteau') + (r.decale ? ' (boutique fermée le jour de la fête : retrait la veille)' : '') },
+      { d: req.fete, txt: '🎉 Fête' + (req.prenom ? ' de ' + esc(req.prenom) : '') }
+    ].filter(x => x.d);
+
+    const tags = (s.spec || []).map(k => '<span class="tag">' + esc(TYPES[k] ? TYPES[k].label : k) + '</span>').join('');
+    const p = pref(s.id);
+    const extra = [];
+    if (p.note) extra.push('Votre note : ' + '★'.repeat(p.note));
+    if (p.livraison === 'oui') extra.push('Livre');
+    if (p.livraison === 'non') extra.push('Ne livre pas');
+
+    return '<div class="shop' + (i === 0 && r.statut.cls !== 'bad' ? ' best' : '') + '">' +
+      '<div class="rank">' + (i + 1) + '</div>' +
+      '<div><h3>' + esc(s.nom) + (i === 0 && r.statut.cls !== 'bad' ? ' <span class="pill ok">Meilleur choix</span>' : '') + (p.favori ? ' ♥' : '') + '</h3>' +
+        '<div class="meta">' + esc(s.genre || '') + ' · ' + esc(s.adresse || 'Amiens') +
+        (s.tel ? ' · <a href="tel:' + s.tel.replace(/\s/g,'') + '">' + esc(s.tel) + '</a>' : '') + '</div>' +
+        '<div class="tags">' + tags + '</div>' +
+        (extra.length ? '<div class="meta">' + extra.join(' · ') + '</div>' : '') +
+        '<details class="more"><summary>Rétroplanning</summary><ol class="timeline">' +
+          steps.map(st => '<li class="' + (st.d < t ? 'past' : '') + '"><b>' + esc(fmtShort(st.d)) + '</b> — ' + st.txt + '</li>').join('') +
+        '</ol><div class="row" style="margin-top:.4rem">' +
+          '<button class="btn ghost small" type="button" data-ics="' + esc(s.id) + '">📅 Ajouter les rappels à mon agenda</button>' +
+          '<a class="btn ghost small" target="_blank" rel="noopener" href="' + mapsUrl(s) + '">Itinéraire</a>' +
+        '</div></details>' +
+      '</div>' +
+      '<div class="deadline"><span class="pill ' + r.statut.cls + '">' + esc(r.statut.txt) + '</span>' +
+        (r.statut.cls !== 'bad' ? '<b>avant le ' + esc(fmtShort(r.limite)) + '</b><span class="muted small">' + rel(r.reste) + '</span>'
+                                : '<span class="muted small">délai ' + r.delai.jours + ' j</span>') +
+      '</div>' +
+    '</div>';
+  }
+
+  function mapsUrl(s){
+    return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.nom + ' ' + (s.adresse || 'Amiens'));
+  }
+
+  /* ---------- Export agenda (.ics) ---------- */
+  function icsDate(d){ return toISO(d).replace(/-/g,''); }
+  function icsText(s){ return String(s).replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\n/g,'\\n'); }
+  function downloadICS(r, req){
+    const qui = req.prenom || 'anniversaire';
+    const stamp = new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d+/,'');
+    const ev = (d, titre, desc, alarme) => [
+      'BEGIN:VEVENT',
+      'UID:' + icsDate(d) + '-' + Math.random().toString(36).slice(2) + '@patisseries-amiens',
+      'DTSTAMP:' + stamp,
+      'DTSTART;VALUE=DATE:' + icsDate(d),
+      'DTEND;VALUE=DATE:' + icsDate(addDays(d, 1)),
+      'SUMMARY:' + icsText(titre),
+      'DESCRIPTION:' + icsText(desc),
+      'LOCATION:' + icsText(r.shop.nom + ', ' + (r.shop.adresse || 'Amiens')),
+      alarme ? 'BEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:' + icsText(titre) + '\r\nTRIGGER:-P' + alarme + 'D\r\nEND:VALARM' : null,
+      'END:VEVENT'
+    ].filter(Boolean).join('\r\n');
+    const tel = r.shop.tel ? ' (' + r.shop.tel + ')' : '';
+    const body = [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Richesse Otsie//Patisseries Amiens//FR', 'CALSCALE:GREGORIAN',
+      ev(r.limite, 'Commander le gâteau — ' + qui, 'Dernier jour pour commander chez ' + r.shop.nom + tel + '. Type : ' + TYPES[req.type].label + ', ' + req.pers + ' personnes.', 2),
+      ev(r.retrait, (req.mode === 'livraison' ? 'Livraison' : 'Retrait') + ' du gâteau — ' + qui, r.shop.nom + tel, 1),
+      'END:VCALENDAR'
+    ].join('\r\n');
+    const blob = new Blob([body], { type:'text/calendar;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'gateau-' + slug(qui) + '.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    toast('Fichier agenda téléchargé : ouvrez-le pour ajouter les rappels.');
+  }
+
+  /* ---------- Rendu : carnet ---------- */
+  function renderCarnet(){
+    const t = today();
+    const list = state.carnet.map(e => {
+      const anniv = nextBirthday(e.date);
+      const type = TYPES[e.type] ? e.type : 'classique';
+      const fete = e.fete === 'samedi' ? saturdayBefore(anniv) : anniv;
+      const limite = addDays(fete, -(TYPES[type].delai + 2));
+      return { e, anniv, fete, limite, type };
+    }).sort((a,b) => a.anniv - b.anniv);
+
+    if (!list.length){
+      $('#carnetList').innerHTML = '<div class="empty">Aucun anniversaire enregistré pour l\'instant.</div>';
+      return;
+    }
+    let html = '<table><thead><tr><th>Prénom</th><th>Anniversaire</th><th class="hide-m">Gâteau</th><th>Commander avant</th><th></th></tr></thead><tbody>';
+    list.forEach(x => {
+      const n = diff(x.limite, t);
+      const cls = n < 0 ? 'bad' : n <= 7 ? 'warn' : 'ok';
+      const age = ageAt(x.e.date, x.anniv);
+      html += '<tr><td><b>' + esc(x.e.prenom) + '</b>' + (age ? '<div class="muted small">' + age + ' ans</div>' : '') + '</td>' +
+        '<td>' + esc(fmtShort(x.anniv)) + '<div class="muted small">' + rel(diff(x.anniv, t)) +
+          (+x.fete !== +x.anniv ? ' · fête le ' + esc(fmtShort(x.fete)) : '') + '</div></td>' +
+        '<td class="hide-m">' + esc(TYPES[x.type].label) + '</td>' +
+        '<td><span class="pill ' + cls + '">' + esc(fmtShort(x.limite)) + '</span><div class="muted small">' + (n < 0 ? 'délai conseillé dépassé' : rel(n)) + '</div></td>' +
+        '<td><div class="row"><button class="btn small" data-plan="' + x.e.id + '">Planifier</button>' +
+        '<button class="btn ghost small" data-del="' + x.e.id + '" aria-label="Supprimer ' + esc(x.e.prenom) + '">✕</button></div></td></tr>';
+    });
+    html += '</tbody></table>';
+    $('#carnetList').innerHTML = html;
+
+    $('#carnetList').querySelectorAll('[data-plan]').forEach(b => b.addEventListener('click', () => {
+      const e = state.carnet.find(x => x.id === b.dataset.plan);
+      $('#pPrenom').value = e.prenom; $('#pDate').value = e.date; $('#pType').value = e.type || 'classique';
+      $('#pFete').value = e.fete === 'samedi' ? 'samedi' : 'jour'; $('#pCustomWrap').hidden = true;
+      showTab('plan'); renderPlan();
+    }));
+    $('#carnetList').querySelectorAll('[data-del]').forEach(b => b.addEventListener('click', () => {
+      const e = state.carnet.find(x => x.id === b.dataset.del);
+      if (!confirm('Supprimer l\'anniversaire de ' + e.prenom + ' ?')) return;
+      state.carnet = state.carnet.filter(x => x.id !== e.id); save(); renderCarnet();
+    }));
+  }
+
+  function addToCarnet(prenom, date, type, fete){
+    if (!prenom || !date) return false;
+    fete = fete === 'samedi' ? 'samedi' : 'jour';
+    const exist = state.carnet.find(x => x.prenom.toLowerCase() === prenom.toLowerCase() && x.date === date);
+    if (exist){ exist.type = type; exist.fete = fete; }
+    else state.carnet.push({ id: Date.now().toString(36) + Math.random().toString(36).slice(2,6), prenom, date, type, fete });
+    save(); renderCarnet();
+    return true;
+  }
+
+  /* ---------- Rendu : annuaire ---------- */
+  function renderAnnuaire(){
+    const q = norm($('#aSearch').value);
+    const list = shops().filter(s => !q || norm([s.nom, s.adresse, s.genre, (s.spec||[]).map(k => TYPES[k] ? TYPES[k].label : k).join(' ')].join(' ')).indexOf(q) !== -1);
+    if (!list.length){ $('#annuaireList').innerHTML = '<div class="empty">Aucune pâtisserie ne correspond à la recherche.</div>'; return; }
+
+    $('#annuaireList').innerHTML = list.map(s => {
+      const p = pref(s.id);
+      const stars = [1,2,3,4,5].map(n => '<button type="button" class="' + (p.note >= n ? 'on' : '') + '" data-star="' + n + '" aria-label="' + n + ' étoile' + (n > 1 ? 's' : '') + '">★</button>').join('');
+      return '<div class="shop" data-id="' + esc(s.id) + '">' +
+        '<div class="rank" aria-hidden="true">' + esc(s.nom.charAt(0)) + '</div>' +
+        '<div><h3>' + esc(s.nom) + '</h3>' +
+          '<div class="meta">' + esc(s.genre || 'Pâtisserie') + ' · ' + esc(s.adresse || 'Amiens') +
+          (s.tel ? ' · <a href="tel:' + s.tel.replace(/\s/g,'') + '">' + esc(s.tel) + '</a>' : '') + '</div>' +
+          '<div class="tags">' + (s.spec||[]).map(k => '<span class="tag">' + esc(TYPES[k] ? TYPES[k].label : k) + '</span>').join('') + '</div>' +
+          (s.info ? '<div class="small">' + esc(s.info) + '</div>' : '') +
+          '<div class="row small" style="margin-top:.5rem;gap:.8rem">' +
+            '<span class="stars" title="Votre note">' + stars + '</span>' +
+            '<label class="row" style="gap:.3rem">Délai réel (j) <input type="number" min="0" max="60" data-delai value="' + (p.delai ?? '') + '" placeholder="auto" style="width:5rem"></label>' +
+            '<label class="row" style="gap:.3rem">Livre <select data-livr style="width:auto">' +
+              ['','oui','non'].map(v => '<option value="' + v + '"' + ((p.livraison || '') === v ? ' selected' : '') + '>' + (v || 'à vérifier') + '</option>').join('') +
+            '</select></label>' +
+            '<button type="button" class="btn ghost small" data-fav aria-pressed="' + !!p.favori + '">' + (p.favori ? '♥ Favori' : '♡ Favori') + '</button>' +
+            '<a class="btn ghost small" target="_blank" rel="noopener" href="' + mapsUrl(s) + '">Carte</a>' +
+            (s.custom ? '<button type="button" class="btn ghost small" data-rm>Retirer</button>' : '') +
+          '</div>' +
+        '</div><div></div></div>';
+    }).join('');
+  }
+
+  $('#annuaireList').addEventListener('click', e => {
+    const row = e.target.closest('.shop'); if (!row) return;
+    const id = row.dataset.id, p = pref(id);
+    if (e.target.dataset.star){ const n = +e.target.dataset.star; p.note = p.note === n ? 0 : n; }
+    else if (e.target.hasAttribute('data-fav')) p.favori = !p.favori;
+    else if (e.target.hasAttribute('data-rm')){
+      if (!confirm('Retirer cette pâtisserie ?')) return;
+      state.custom = state.custom.filter(s => s.id !== id); delete state.prefs[id];
+    } else return;
+    save(); renderAnnuaire(); renderPlan();
+  });
+  $('#annuaireList').addEventListener('change', e => {
+    const row = e.target.closest('.shop'); if (!row) return;
+    const p = pref(row.dataset.id);
+    if (e.target.hasAttribute('data-delai')) p.delai = e.target.value === '' ? undefined : Math.max(0, +e.target.value);
+    else if (e.target.hasAttribute('data-livr')) p.livraison = e.target.value || undefined;
+    else return;
+    save(); renderPlan(); toast('Enregistré');
+  });
+
+  /* ---------- Utilitaires ---------- */
+  function $(s){ return document.querySelector(s); }
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function norm(s){ return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function slug(s){ return norm(s).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'anniversaire'; }
+  let toastTimer;
+  function toast(msg){
+    const el = $('#toast'); el.textContent = msg; el.classList.add('show');
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
+  }
+
+  function showTab(name){
+    ['plan','carnet','annuaire'].forEach(n => {
+      $('#t-' + n).setAttribute('aria-selected', String(n === name));
+      $('#p-' + n).hidden = n !== name;
+    });
+  }
+
+  function persistPlanForm(){
+    state.plan = { prenom:$('#pPrenom').value, date:$('#pDate').value, fete:$('#pFete').value, custom:$('#pCustom').value,
+      type:$('#pType').value, pers:$('#pPers').value, mode:$('#pMode').value, marge:$('#pMarge').value };
+    save();
+  }
+
+  /* ---------- Initialisation ---------- */
+  const typeOpts = Object.keys(TYPES).map(k => '<option value="' + k + '">' + esc(TYPES[k].label) + ' (~' + TYPES[k].delai + ' j)</option>').join('');
+  $('#pType').innerHTML = typeOpts;
+  $('#qType').innerHTML = typeOpts;
+  $('#sSpec').innerHTML = Object.keys(TYPES).map(k => '<option value="' + k + '">' + esc(TYPES[k].label) + '</option>').join('');
+
+  if (state.plan){
+    const p = state.plan;
+    $('#pPrenom').value = p.prenom || ''; $('#pDate').value = p.date || ''; $('#pFete').value = p.fete || 'jour';
+    $('#pCustom').value = p.custom || ''; $('#pType').value = TYPES[p.type] ? p.type : 'classique';
+    $('#pPers').value = p.pers || 10; $('#pMode').value = p.mode || 'retrait'; $('#pMarge').value = p.marge ?? 2;
+  }
+  $('#pCustomWrap').hidden = $('#pFete').value !== 'custom';
+
+  document.querySelectorAll('nav.tabs button').forEach(b => b.addEventListener('click', () => showTab(b.id.slice(2))));
+  $('#planForm').addEventListener('input', renderPlan);
+  $('#planForm').addEventListener('change', () => { $('#pCustomWrap').hidden = $('#pFete').value !== 'custom'; renderPlan(); });
+  $('#planForm').addEventListener('submit', e => e.preventDefault());
+  $('#pSave').addEventListener('click', () => {
+    if (!$('#pPrenom').value.trim() || !$('#pDate').value){ toast('Indiquez un prénom et une date.'); return; }
+    addToCarnet($('#pPrenom').value.trim(), $('#pDate').value, $('#pType').value, $('#pFete').value);
+    toast('Ajouté à « Mes anniversaires »');
+  });
+  $('#quickForm').addEventListener('submit', e => {
+    e.preventDefault();
+    if (addToCarnet($('#qPrenom').value.trim(), $('#qDate').value, $('#qType').value, $('#qFete').value)){ e.target.reset(); toast('Anniversaire ajouté'); }
+  });
+  $('#aSearch').addEventListener('input', renderAnnuaire);
+  $('#addShopForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const nom = $('#sNom').value.trim(); if (!nom) return;
+    const spec = Array.from($('#sSpec').selectedOptions).map(o => o.value);
+    state.custom.push({ id:'c-' + Date.now().toString(36), custom:true, nom, genre:'Pâtisserie (ajoutée par vous)',
+      adresse:$('#sAdr').value.trim(), tel:$('#sTel').value.trim(), spec: spec.length ? spec : ['classique'] });
+    save(); e.target.reset(); renderAnnuaire(); renderPlan(); toast('Pâtisserie ajoutée');
+  });
+
+  renderPlan(); renderCarnet(); renderAnnuaire();
+})();
+</script>

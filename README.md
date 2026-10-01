@@ -8,6 +8,7 @@ Site personnel (CV / portfolio) de Richesse Otsie, généré avec [Jekyll](https
 - [`parcours.md`](parcours.md) — formation, expériences, compétences
 - [`_products/`](_products) — réalisations/projets
 - [`outils/fiche-exploitation-journaliere.html`](outils/fiche-exploitation-journaliere.html) — outil de gestion de caisse développé pour Les Boutiques Louis-Prisque
+- [`outils/patisseries-amiens.html`](outils/patisseries-amiens.html) — annuaire des pâtisseries d'Amiens et planificateur de commande de gâteau d'anniversaire
 
 ## Développement local
 
