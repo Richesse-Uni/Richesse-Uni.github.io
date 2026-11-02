@@ -1,0 +1,59 @@
+---
+layout: iec
+---
+<section class="iec-page-hero">
+  <div class="iec-wrap">
+    <p class="iec-fil"><a href="{{ '/iec/' | relative_url }}">IEC</a> / <a href="{{ '/iec/filiales/' | relative_url }}">Nos entreprises</a> / {{ page.title }}</p>
+    <div class="iec-filiale-entete">
+      <span class="iec-carte__icone">{% include iec-icone.html nom=page.icone %}</span>
+      {% if page.statut %}<span class="iec-statut {% if page.statut == 'Active' %}iec-statut--actif{% else %}iec-statut--bientot{% endif %}">{{ page.statut }}</span>{% endif %}
+    </div>
+    <span class="iec-eyebrow">{{ page.domaine }}</span>
+    <h1 class="iec-argent">{{ page.title }}</h1>
+    <p>{{ page.accroche }}</p>
+    {% if page.exemple %}<p class="iec-badge-exemple">Cette fiche est un exemple : modifie le fichier <code>{{ page.path }}</code> pour y mettre les vraies informations.</p>{% endif %}
+  </div>
+</section>
+
+{% if content != "" %}
+<section class="iec-section">
+  <div class="iec-wrap iec-prose">
+    <span class="iec-eyebrow">Présentation</span>
+    {{ content }}
+  </div>
+</section>
+{% endif %}
+
+{% if page.offres %}
+<section class="iec-section iec-section--alt">
+  <div class="iec-wrap">
+    <div class="iec-section__head">
+      <span class="iec-eyebrow">Ce que nous proposons</span>
+      <h2>Nos offres</h2>
+    </div>
+    <div class="iec-offres">
+      {% for o in page.offres %}
+      <article class="iec-offre">
+        <h3>{{ o.titre }}</h3>
+        <p>{{ o.description }}</p>
+        {% if o.prix %}<p class="iec-offre__prix">{{ o.prix }}</p>{% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="iec-section">
+  <div class="iec-wrap">
+    <div class="iec-cta">
+      <span class="iec-eyebrow">Un projet, une question ?</span>
+      <h2>Parlons-en</h2>
+      <p>Écris-nous pour en savoir plus sur {{ page.title }} ou pour démarrer un projet ensemble.</p>
+      <div class="iec-hero__actions">
+        <a class="iec-btn" href="mailto:{% if page.email %}{{ page.email }}{% else %}{{ site.data.iec.email }}{% endif %}?subject={{ page.title | url_encode }}">Nous contacter</a>
+        <a class="iec-btn iec-btn--ghost" href="{{ '/iec/filiales/' | relative_url }}">Voir les autres entreprises</a>
+      </div>
+    </div>
+  </div>
+</section>

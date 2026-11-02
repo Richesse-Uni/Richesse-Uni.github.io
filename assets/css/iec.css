@@ -1,0 +1,292 @@
+/* Impact Entrepreneurs Chrétiens — charte noir & argent, inspirée du logo. */
+:root {
+  --noir: #000;
+  --fond: #07070a;
+  --fond-2: #111116;
+  --carte: #15151b;
+  --ligne: #2a2a33;
+  --texte: #ececf1;
+  --doux: #a4a4b0;
+  --argent-1: #ffffff;
+  --argent-2: #c9cbd2;
+  --argent-3: #8d9099;
+  --lumiere: rgba(255, 255, 255, .55);
+  --rayon: 16px;
+  --argent: linear-gradient(180deg, var(--argent-1) 0%, var(--argent-2) 45%, var(--argent-3) 70%, #e9eaee 100%);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--argent-1); }
+a:hover { color: var(--argent-2); }
+h1, h2, h3 { line-height: 1.2; margin: 0 0 .6em; letter-spacing: .01em; }
+p { margin: 0 0 1em; }
+
+.iec-wrap { width: min(1140px, 100% - 32px); margin-inline: auto; }
+.iec-muted { color: var(--doux); }
+.iec-skip { position: absolute; left: -9999px; }
+.iec-skip:focus { left: 16px; top: 16px; z-index: 100; background: #fff; color: #000; padding: 8px 12px; border-radius: 8px; }
+:focus-visible { outline: 2px solid var(--argent-2); outline-offset: 3px; border-radius: 4px; }
+
+.iec-argent {
+  background: var(--argent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.iec-eyebrow {
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--argent-3);
+  margin-bottom: .9rem;
+}
+
+/* ---------- Boutons ---------- */
+.iec-btn {
+  display: inline-flex; align-items: center; gap: .5em;
+  padding: .85em 1.5em;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #0a0a0d;
+  background: var(--argent);
+  border: 1px solid #fff;
+  box-shadow: 0 0 24px rgba(255, 255, 255, .12);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.iec-btn:hover { color: #000; transform: translateY(-1px); box-shadow: 0 0 32px rgba(255, 255, 255, .22); }
+.iec-btn--ghost { background: transparent; color: var(--texte); border-color: var(--ligne); box-shadow: none; }
+.iec-btn--ghost:hover { color: #fff; border-color: var(--argent-3); }
+.iec-btn--small { padding: .5em 1.1em; font-size: .9rem; }
+
+/* ---------- En-tête ---------- */
+.iec-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(0, 0, 0, .82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--ligne);
+}
+.iec-header__in { display: flex; align-items: center; justify-content: space-between; min-height: 66px; gap: 16px; }
+.iec-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: .95rem; color: var(--texte); }
+.iec-brand img { border-radius: 8px; }
+.iec-nav { display: flex; align-items: center; gap: 26px; }
+.iec-nav a:not(.iec-btn) { color: var(--doux); text-decoration: none; font-weight: 500; font-size: .95rem; }
+.iec-nav a:not(.iec-btn):hover, .iec-nav a[aria-current="page"] { color: #fff; }
+.iec-burger { display: none; background: none; border: 0; padding: 8px; cursor: pointer; }
+.iec-burger span { display: block; width: 22px; height: 2px; background: var(--texte); margin: 5px 0; border-radius: 2px; }
+
+@media (max-width: 860px) {
+  .iec-brand span { display: none; }
+  .iec-burger { display: block; }
+  .iec-nav {
+    display: none;
+    position: absolute; left: 0; right: 0; top: 66px;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: #000; border-bottom: 1px solid var(--ligne);
+    padding: 8px 16px 18px;
+  }
+  .iec-nav.is-open { display: flex; }
+  .iec-nav a:not(.iec-btn) { padding: 12px 0; border-bottom: 1px solid var(--ligne); }
+  .iec-nav .iec-btn { margin-top: 14px; justify-content: center; }
+}
+
+/* ---------- Héros ---------- */
+.iec-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(56px, 10vw, 120px) 0 clamp(56px, 9vw, 110px);
+  background: radial-gradient(60% 55% at 50% 30%, rgba(255, 255, 255, .09), transparent 70%), var(--noir);
+  text-align: center;
+  border-bottom: 1px solid var(--ligne);
+}
+.iec-hero__logo { width: min(680px, 100%); margin: 0 auto 28px; }
+.iec-hero__slogan {
+  font-family: "Lora", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  color: var(--argent-2);
+  max-width: 34ch;
+  margin: 0 auto 32px;
+}
+.iec-hero__actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+.iec-page-hero {
+  padding: clamp(48px, 8vw, 88px) 0 clamp(36px, 6vw, 56px);
+  background: radial-gradient(55% 80% at 50% 0%, rgba(255, 255, 255, .08), transparent 70%), var(--noir);
+  border-bottom: 1px solid var(--ligne);
+}
+.iec-page-hero h1 { font-size: clamp(2rem, 5vw, 3.1rem); font-weight: 800; }
+.iec-page-hero p { color: var(--doux); max-width: 62ch; font-size: 1.05rem; }
+.iec-fil { font-size: .85rem; color: var(--doux); margin-bottom: 18px; }
+.iec-fil a { color: var(--doux); }
+
+/* ---------- Sections ---------- */
+.iec-section { padding: clamp(56px, 9vw, 100px) 0; }
+.iec-section--alt { background: var(--fond-2); border-block: 1px solid var(--ligne); }
+.iec-section__head { max-width: 720px; margin-bottom: 40px; }
+.iec-section__head--center { margin-inline: auto; text-align: center; }
+.iec-section h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 800; }
+.iec-lead { font-size: 1.1rem; color: var(--doux); }
+
+.iec-split { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+@media (max-width: 860px) { .iec-split { grid-template-columns: 1fr; } }
+
+/* ---------- Sigle I-E-C ---------- */
+.iec-sigle { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+@media (max-width: 760px) { .iec-sigle { grid-template-columns: 1fr; } }
+.iec-lettre {
+  position: relative;
+  background: var(--carte);
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon);
+  padding: 28px 26px 26px;
+  overflow: hidden;
+}
+.iec-lettre__l {
+  font-size: 5.5rem; font-weight: 800; line-height: 1;
+  display: block; margin-bottom: 10px;
+}
+.iec-lettre h3 { font-size: 1.25rem; text-transform: uppercase; letter-spacing: .08em; }
+.iec-lettre p { color: var(--doux); margin: 0; }
+
+/* ---------- Versets ---------- */
+.iec-verset {
+  margin: 0;
+  padding: 28px 30px;
+  border-left: 3px solid var(--argent-2);
+  background: linear-gradient(90deg, rgba(255, 255, 255, .05), transparent);
+  border-radius: 0 var(--rayon) var(--rayon) 0;
+}
+.iec-verset p {
+  font-family: "Lora", Georgia, serif; font-style: italic;
+  font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+  color: var(--texte); margin-bottom: .6em;
+}
+.iec-verset cite { font-style: normal; font-weight: 600; color: var(--argent-3); letter-spacing: .06em; font-size: .9rem; }
+.iec-visuel {
+  border-radius: var(--rayon);
+  border: 1px solid var(--ligne);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .6);
+}
+
+/* ---------- Valeurs / piliers ---------- */
+.iec-piliers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+@media (max-width: 860px) { .iec-piliers { grid-template-columns: 1fr; } }
+.iec-pilier { padding: 26px; border: 1px solid var(--ligne); border-radius: var(--rayon); background: var(--carte); }
+.iec-pilier__num { font-size: .8rem; font-weight: 700; letter-spacing: .2em; color: var(--argent-3); }
+.iec-pilier h3 { font-size: 1.2rem; margin-top: .5em; }
+.iec-pilier p { color: var(--doux); margin: 0; }
+
+/* ---------- Cartes filiales ---------- */
+.iec-filtres { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.iec-filtre {
+  font: inherit; font-size: .9rem; font-weight: 500;
+  padding: .45em 1em; border-radius: 999px; cursor: pointer;
+  background: transparent; color: var(--doux); border: 1px solid var(--ligne);
+}
+.iec-filtre:hover { color: #fff; border-color: var(--argent-3); }
+.iec-filtre[aria-pressed="true"] { background: var(--argent); color: #000; border-color: #fff; }
+
+.iec-grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 20px; }
+.iec-carte {
+  position: relative;
+  display: flex; flex-direction: column;
+  padding: 26px;
+  background: var(--carte);
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon);
+  text-decoration: none; color: var(--texte);
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.iec-carte:hover { color: var(--texte); border-color: var(--argent-3); transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0, 0, 0, .5), 0 0 0 1px rgba(255, 255, 255, .05); }
+.iec-carte[hidden] { display: none; }
+.iec-carte__haut { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.iec-carte__icone {
+  display: grid; place-items: center;
+  width: 52px; height: 52px; border-radius: 14px;
+  background: linear-gradient(145deg, #2b2c33, #121217);
+  border: 1px solid #3a3b44;
+  color: #fff;
+}
+.iec-carte h3 { font-size: 1.25rem; margin-bottom: .2em; }
+.iec-carte__domaine { font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--argent-3); margin-bottom: .9em; }
+.iec-carte__accroche { color: var(--doux); flex: 1; }
+.iec-carte__offres { list-style: none; padding: 0; margin: 0 0 18px; display: flex; flex-wrap: wrap; gap: 6px; }
+.iec-carte__offres li { font-size: .78rem; padding: .25em .7em; border-radius: 999px; background: #1f1f26; border: 1px solid var(--ligne); color: var(--argent-2); }
+.iec-carte__lien { font-weight: 600; font-size: .92rem; }
+.iec-carte__lien::after { content: " →"; }
+
+.iec-statut {
+  font-size: .72rem; font-weight: 600; letter-spacing: .06em;
+  padding: .3em .75em; border-radius: 999px; white-space: nowrap;
+  border: 1px solid var(--ligne); color: var(--doux);
+}
+.iec-statut--actif { color: #b9f6ca; border-color: #2e6b44; background: rgba(46, 107, 68, .18); }
+.iec-statut--bientot { color: #ffe3a3; border-color: #6d5a2a; background: rgba(109, 90, 42, .18); }
+.iec-badge-exemple { font-size: .72rem; color: var(--doux); font-style: italic; margin-top: 10px; }
+
+.iec-carte--ajout {
+  align-items: center; justify-content: center; text-align: center;
+  border-style: dashed; color: var(--doux); min-height: 220px;
+}
+.iec-carte--ajout:hover { color: #fff; }
+.iec-carte--ajout strong { display: block; color: var(--texte); font-size: 1.1rem; margin: 10px 0 4px; }
+
+/* ---------- Page filiale ---------- */
+.iec-filiale-entete { display: flex; align-items: center; gap: 18px; margin-bottom: 14px; flex-wrap: wrap; }
+.iec-filiale-entete .iec-carte__icone { width: 64px; height: 64px; }
+.iec-offres { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+.iec-offre { padding: 24px; border: 1px solid var(--ligne); border-radius: var(--rayon); background: var(--carte); }
+.iec-offre h3 { font-size: 1.1rem; }
+.iec-offre p { color: var(--doux); margin: 0; }
+.iec-offre__prix { margin-top: 12px !important; color: var(--argent-2) !important; font-weight: 600; }
+.iec-prose { max-width: 70ch; }
+.iec-prose p, .iec-prose li { color: #cfcfd8; }
+.iec-prose h2 { font-size: 1.5rem; margin-top: 1.4em; }
+
+.iec-autres { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* ---------- Appel à l'action / contact ---------- */
+.iec-cta {
+  text-align: center;
+  padding: clamp(36px, 6vw, 64px) clamp(20px, 5vw, 56px);
+  border: 1px solid var(--ligne);
+  border-radius: calc(var(--rayon) + 8px);
+  background: radial-gradient(70% 120% at 50% 0%, rgba(255, 255, 255, .08), transparent 70%), var(--carte);
+}
+.iec-cta p { color: var(--doux); max-width: 56ch; margin-inline: auto; }
+.iec-cta .iec-hero__actions { margin-top: 24px; }
+
+/* ---------- Pied de page ---------- */
+.iec-footer { background: #000; border-top: 1px solid var(--ligne); padding: 56px 0 24px; }
+.iec-footer__in { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 32px; }
+@media (max-width: 760px) { .iec-footer__in { grid-template-columns: 1fr; } }
+.iec-footer__logo { width: 260px; margin-bottom: 12px; }
+.iec-footer__title { font-size: .8rem; text-transform: uppercase; letter-spacing: .18em; color: var(--argent-3); }
+.iec-footer__list { list-style: none; padding: 0; margin: 0; }
+.iec-footer__list li { margin-bottom: 8px; }
+.iec-footer__list a { color: var(--doux); text-decoration: none; overflow-wrap: anywhere; }
+.iec-footer__list a:hover { color: #fff; }
+.iec-footer__copy { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--ligne); font-size: .82rem; color: var(--argent-3); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+/* Le logo a un fond noir : le mode "screen" le rend transparent sur les fonds sombres. */
+.iec-hero__logo, .iec-footer__logo, .iec-brand img, .iec-filiale-logo { mix-blend-mode: screen; }
