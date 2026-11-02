@@ -1,0 +1,134 @@
+---
+layout: iec
+title: Accueil
+titre_onglet: "Impact Entrepreneurs Chrétiens — Là où tes projets prennent vie"
+description: "Impact Entrepreneurs Chrétiens (IEC) : là où tes projets prennent vie pour servir Dieu et les autres. Découvrez notre vision et nos entreprises."
+permalink: /iec/
+---
+{% assign filiales = site.filiales | sort: "ordre" %}
+
+<section class="iec-hero">
+  <div class="iec-wrap">
+    <h1 style="margin:0">
+      <img class="iec-hero__logo" src="{{ '/assets/imgs/iec/logo-iec.png' | relative_url }}" alt="{{ site.data.iec.nom }} (IEC)" width="1000" height="487">
+    </h1>
+    <p class="iec-hero__slogan">« {{ site.data.iec.slogan }} »</p>
+    <div class="iec-hero__actions">
+      <a class="iec-btn" href="{{ '/iec/filiales/' | relative_url }}">Découvrir nos entreprises</a>
+      <a class="iec-btn iec-btn--ghost" href="#vision">Notre vision</a>
+    </div>
+  </div>
+</section>
+
+<section class="iec-section" id="vision">
+  <div class="iec-wrap iec-split">
+    <div>
+      <span class="iec-eyebrow">Qu'est-ce que IEC ?</span>
+      <h2>Une vision donnée par Dieu, <span class="iec-argent">pour nous</span></h2>
+      <p class="iec-lead">Impact Entrepreneurs Chrétiens est un groupe d'entreprises et une communauté d'entrepreneurs qui veulent impacter le monde par la lumière qu'ils sont.</p>
+      <p class="iec-muted">IEC rassemble plusieurs entreprises, chacune dans son domaine, avec une même mission : manifester les valeurs de Dieu dans le monde séculier et mettre chaque activité au service de Dieu et des autres.</p>
+    </div>
+    <div class="iec-piliers" style="grid-template-columns:1fr">
+      <div class="iec-pilier">
+        <span class="iec-pilier__num">01</span>
+        <h3>Impacter le monde</h3>
+        <p>Par la lumière que nous sommes, là où Dieu nous a placés.</p>
+      </div>
+      <div class="iec-pilier">
+        <span class="iec-pilier__num">02</span>
+        <h3>Manifester ses valeurs</h3>
+        <p>Dans le monde séculier : intégrité, excellence, amour du prochain.</p>
+      </div>
+      <div class="iec-pilier">
+        <span class="iec-pilier__num">03</span>
+        <h3>Servir</h3>
+        <p>Appliquer le service pour Dieu et pour les autres dans chaque projet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="iec-section iec-section--alt" id="sigle">
+  <div class="iec-wrap">
+    <div class="iec-section__head iec-section__head--center">
+      <span class="iec-eyebrow">Pourquoi IEC ?</span>
+      <h2>Trois lettres, une identité</h2>
+      <p class="iec-lead">Le sigle IEC signifie <strong>Impact Entrepreneurs Chrétiens</strong>.</p>
+    </div>
+    <div class="iec-sigle">
+      <article class="iec-lettre">
+        <span class="iec-lettre__l iec-argent" aria-hidden="true">I</span>
+        <h3>Impact</h3>
+        <p>Laisser une empreinte durable et positive dans la vie des personnes et dans la société.</p>
+      </article>
+      <article class="iec-lettre">
+        <span class="iec-lettre__l iec-argent" aria-hidden="true">E</span>
+        <h3>Entrepreneurs</h3>
+        <p>Des femmes et des hommes qui osent créer, bâtir et faire grandir des projets concrets.</p>
+      </article>
+      <article class="iec-lettre">
+        <span class="iec-lettre__l iec-argent" aria-hidden="true">C</span>
+        <h3>Chrétiens</h3>
+        <p>Une foi qui inspire la manière d'entreprendre, de diriger et de servir.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="iec-section" id="but">
+  <div class="iec-wrap iec-split">
+    <div>
+      <span class="iec-eyebrow">C'est quoi le but de IEC ?</span>
+      <h2>Mettre chaque don <span class="iec-argent">au service des autres</span></h2>
+      <figure class="iec-verset">
+        <p>« Chacun de vous a reçu de Dieu un don de la grâce particulier : qu'il l'exerce au service des autres comme un bon gérant de la grâce infiniment variée de Dieu. »</p>
+        <cite>1 Pierre 4:10 (BDS)</cite>
+      </figure>
+      <p class="iec-muted" style="margin-top:1.4em">IEC est le lieu où tes projets prennent vie : nous aidons chacun à faire fructifier le don qu'il a reçu, à travers des entreprises qui servent réellement les autres.</p>
+    </div>
+    <img class="iec-visuel" src="{{ '/assets/imgs/iec/verset-1-pierre-4-10.jpg' | relative_url }}" alt="Verset 1 Pierre 4:10 sur fond d'une croix aux couleurs roses et violettes" width="900" height="900" loading="lazy">
+  </div>
+</section>
+
+<section class="iec-section iec-section--alt" id="pourquoi">
+  <div class="iec-wrap">
+    <div class="iec-section__head iec-section__head--center">
+      <span class="iec-eyebrow">Pourquoi « Entrepreneurs Chrétiens » ?</span>
+      <h2>La création attend</h2>
+    </div>
+    <figure class="iec-verset" style="max-width:760px;margin-inline:auto">
+      <p>« En effet, la création attend, avec un ardent désir, la révélation des fils de Dieu. »</p>
+      <cite>Romains 8:19 (BDS)</cite>
+    </figure>
+    <p class="iec-lead" style="text-align:center;max-width:62ch;margin:28px auto 0">Le monde de l'entreprise a besoin de voir des enfants de Dieu se révéler : des entrepreneurs qui créent de la valeur, avec foi, intégrité et excellence.</p>
+  </div>
+</section>
+
+<section class="iec-section" id="entreprises">
+  <div class="iec-wrap">
+    <div class="iec-section__head">
+      <span class="iec-eyebrow">Le groupe IEC</span>
+      <h2>Nos entreprises</h2>
+      <p class="iec-lead">IEC se déploie à travers plusieurs entreprises, chacune dans un domaine différent. Découvre ce que chacune propose.</p>
+    </div>
+    <div class="iec-grille">
+      {% for f in filiales %}{% include iec-carte-filiale.html filiale=f %}{% endfor %}
+    </div>
+    <p style="margin-top:28px"><a class="iec-btn iec-btn--ghost" href="{{ '/iec/filiales/' | relative_url }}">Voir toutes nos entreprises</a></p>
+  </div>
+</section>
+
+<section class="iec-section" id="contact" style="padding-top:0">
+  <div class="iec-wrap">
+    <div class="iec-cta">
+      <span class="iec-eyebrow">En somme</span>
+      <h2>Rejoins la vision</h2>
+      <p>Impact Entrepreneurs Chrétiens est une vision que Dieu a mise en moi pour nous : impacter le monde par la lumière que nous sommes, manifester ses valeurs dans le monde séculier, et appliquer le service pour Dieu et les autres.</p>
+      <p>Tu as un projet, tu veux collaborer ou rejoindre l'une de nos entreprises ? Écris-nous.</p>
+      <div class="iec-hero__actions">
+        <a class="iec-btn" href="mailto:{{ site.data.iec.email }}?subject=Contact%20IEC">Nous écrire</a>
+        <a class="iec-btn iec-btn--ghost" href="{{ '/iec/filiales/' | relative_url }}">Nos entreprises</a>
+      </div>
+    </div>
+  </div>
+</section>

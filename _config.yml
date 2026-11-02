@@ -16,6 +16,10 @@ collections:
     output: true
     layout: product
     show_sidebar: false
+  # Sous-entreprises d'Impact Entrepreneurs Chrétiens (une fiche = un fichier dans _filiales/)
+  filiales:
+    output: true
+    permalink: /iec/filiales/:name/
 
 # Image par défaut pour tout document de la collection "products" qui n'a pas son propre champ
 # `image:` en front matter (ex. pas encore de vraie capture d'écran disponible).
@@ -25,6 +29,11 @@ defaults:
       type: products
     values:
       image: /assets/imgs/projet-placeholder.svg
+  - scope:
+      path: ""
+      type: filiales
+    values:
+      layout: iec-filiale
 
 plugins:
   - jekyll-remote-include
