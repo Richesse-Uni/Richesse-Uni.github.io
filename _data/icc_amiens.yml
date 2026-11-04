@@ -7,6 +7,10 @@ nom_court: ICC Amiens
 slogan: "Une église où l'amour de Dieu transforme des gens ordinaires en champions !"
 ville: Amiens
 
+# --- Église principale (les églises annexes sont attachées à sa vision) --------
+eglise_principale: Croissy-Beaubourg
+eglise_principale_lieu: "Seine-et-Marne (77)"
+
 # --- Adresse du lieu de culte -------------------------------------------------
 # Renseigne l'adresse complète : un bouton « Itinéraire » et une carte apparaissent alors.
 adresse: ""          # ex. "12 rue Exemple"

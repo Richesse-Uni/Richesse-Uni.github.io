@@ -31,7 +31,7 @@ permalink: /icc-amiens/
     <div>
       <span class="icc-eyebrow">Bienvenue chez vous</span>
       <h2>Une famille, <span class="icc-rouge">une vision</span></h2>
-      <p class="icc-lead">ICC Amiens est l'église locale d'Amiens du réseau <strong>Impact Centre Chrétien</strong>, fondé par le Pasteur Yvan Castanou.</p>
+      <p class="icc-lead">ICC Amiens est une église annexe d'<strong>Impact Centre Chrétien</strong>, fondé par le Pasteur Yvan Castanou, rattachée à l'église principale de <strong>{{ icc.eglise_principale }}</strong> et attachée à sa vision.</p>
       <p>Notre désir : que chacun, quel que soit son parcours, rencontre l'amour de Jésus-Christ, soit transformé par sa Parole et découvre le potentiel que Dieu a placé en lui. Ici, des gens ordinaires deviennent des champions — dans leur foi, leur famille, leurs études et leur travail.</p>
       <p>Que vous soyez croyant de longue date, en recherche ou simplement curieux, vous êtes le bienvenu.</p>
       {% if icc.responsables.size > 0 %}
@@ -49,6 +49,36 @@ permalink: /icc-amiens/
       <li><span>01</span><div><h3>L'amour de Dieu</h3><p>Accueillir chacun tel qu'il est, avec la compassion du Christ.</p></div></li>
       <li><span>02</span><div><h3>La transformation</h3><p>Laisser la Parole changer nos vies de l'intérieur.</p></div></li>
       <li><span>03</span><div><h3>Des champions</h3><p>Révéler le potentiel de chacun pour impacter Amiens et au-delà.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="icc-section icc-section--alt icc-rattachement" id="une-vision">
+  <div class="icc-wrap">
+    <div class="icc-head icc-head--center">
+      <span class="icc-eyebrow">Une seule vision</span>
+      <h2>Une église annexe, <span class="icc-rouge">une même vision</span></h2>
+      <p class="icc-lead">Comme toutes les églises annexes d'ICC, ICC Amiens est attachée à la vision de l'église principale de {{ icc.eglise_principale }}. Les mêmes valeurs, le même enseignement et la même passion, vécus au cœur d'Amiens.</p>
+    </div>
+    <div class="icc-lien">
+      <div class="icc-lien__eglise icc-lien__eglise--mere">
+        <span class="icc-lien__label">Église principale</span>
+        <strong>ICC {{ icc.eglise_principale }}</strong>
+        <small>{{ icc.eglise_principale_lieu }}</small>
+      </div>
+      <div class="icc-lien__fleche" aria-hidden="true">
+        <span>Vision · Enseignement · Valeurs</span>
+      </div>
+      <div class="icc-lien__eglise">
+        <span class="icc-lien__label">Église annexe</span>
+        <strong>ICC Amiens</strong>
+        <small>{{ icc.ville }} · Somme (80)</small>
+      </div>
+    </div>
+    <ul class="icc-lien__points">
+      <li><strong>Une même vision</strong>Portée par le Pasteur Yvan Castanou et transmise à toutes les églises du réseau.</li>
+      <li><strong>Un même enseignement</strong>La Parole reçue à l'église principale nourrit la vie de l'église locale.</li>
+      <li><strong>Une proximité locale</strong>Une famille à Amiens pour vivre cette vision au quotidien.</li>
     </ul>
   </div>
 </section>
