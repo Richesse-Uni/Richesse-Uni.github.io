@@ -1,0 +1,94 @@
+{%- assign icc = site.data.icc_amiens -%}
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#a3121a">
+  <title>{% if page.titre_onglet %}{{ page.titre_onglet }}{% else %}{{ page.title }} · {{ icc.nom_court }}{% endif %}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ icc.slogan }}{% endif %}">
+  <meta property="og:title" content="{{ icc.nom }} — Église locale">
+  <meta property="og:description" content="{{ icc.slogan }}">
+  <meta property="og:image" content="{{ '/assets/imgs/icc-amiens/banniere.jpg' | absolute_url }}">
+  <link rel="icon" type="image/png" href="{{ '/assets/imgs/icc-amiens/favicon-icc.png' | relative_url }}">
+  <link rel="apple-touch-icon" href="{{ '/assets/imgs/icc-amiens/logo-icc.png' | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/icc-amiens.css' | relative_url }}">
+</head>
+<body>
+  <a class="icc-skip" href="#contenu">Aller au contenu</a>
+
+  <header class="icc-header">
+    <div class="icc-wrap icc-header__in">
+      <a class="icc-brand" href="{{ '/icc-amiens/' | relative_url }}" aria-label="Accueil {{ icc.nom }}">
+        <img src="{{ '/assets/imgs/icc-amiens/logo-icc.png' | relative_url }}" alt="" width="44" height="44">
+        <span><strong>ICC</strong> Amiens</span>
+      </a>
+      <button class="icc-burger" type="button" aria-expanded="false" aria-controls="icc-nav" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="icc-nav" class="icc-nav" aria-label="Navigation principale">
+        <a href="{{ '/icc-amiens/#qui-sommes-nous' | relative_url }}">Qui sommes-nous</a>
+        <a href="{{ '/icc-amiens/#cultes' | relative_url }}">Cultes</a>
+        <a href="{{ '/icc-amiens/#vie-eglise' | relative_url }}">Vie d'église</a>
+        <a href="{{ '/icc-amiens/#premiere-visite' | relative_url }}">Première visite</a>
+        <a href="{{ '/icc-amiens/#dons' | relative_url }}">Dons</a>
+        <a class="icc-btn icc-btn--small" href="{{ '/icc-amiens/#contact' | relative_url }}">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu">
+    {{ content }}
+  </main>
+
+  <footer class="icc-footer">
+    <div class="icc-wrap icc-footer__in">
+      <div>
+        <div class="icc-footer__brand">
+          <img src="{{ '/assets/imgs/icc-amiens/logo-icc.png' | relative_url }}" alt="" width="56" height="56" loading="lazy">
+          <div>
+            <strong>Impact Centre Chrétien</strong>
+            <span class="icc-tag">Amiens</span>
+            <small>Église locale</small>
+          </div>
+        </div>
+        <p class="icc-footer__slogan">{{ icc.slogan }}</p>
+      </div>
+      <div>
+        <h2 class="icc-footer__title">Nous rejoindre</h2>
+        <ul class="icc-footer__list">
+          {% for c in icc.cultes %}<li>{{ c.jour }} — {{ c.titre }}{% if c.heure != "" %} · {{ c.heure }}{% endif %}</li>{% endfor %}
+          <li>{% if icc.adresse != "" %}{{ icc.adresse }}, {{ icc.code_postal }} {{ icc.ville }}{% else %}{{ icc.ville }} (adresse à venir){% endif %}</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="icc-footer__title">Contact</h2>
+        <ul class="icc-footer__list">
+          {% if icc.email != "" %}<li><a href="mailto:{{ icc.email }}">{{ icc.email }}</a></li>{% endif %}
+          {% if icc.telephone != "" %}<li><a href="tel:{{ icc.telephone | remove: ' ' }}">{{ icc.telephone }}</a></li>{% endif %}
+          {% for r in icc.reseaux %}{% if r[1] != "" %}<li><a href="{{ r[1] }}" rel="noopener" target="_blank">{{ r[0] | capitalize }}</a></li>{% endif %}{% endfor %}
+          <li><a href="{{ icc.site_icc }}" rel="noopener" target="_blank">Le réseau Impact Centre Chrétien</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="icc-wrap icc-footer__copy">© {{ site.time | date: "%Y" }} {{ icc.nom }} — Église annexe rattachée à l'église principale ICC {{ icc.eglise_principale }}.</p>
+  </footer>
+
+  <script>
+    (function () {
+      var b = document.querySelector('.icc-burger'), n = document.getElementById('icc-nav');
+      if (!b || !n) return;
+      b.addEventListener('click', function () {
+        var open = n.classList.toggle('is-open');
+        b.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      n.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') { n.classList.remove('is-open'); b.setAttribute('aria-expanded', 'false'); }
+      });
+    })();
+  </script>
+</body>
+</html>

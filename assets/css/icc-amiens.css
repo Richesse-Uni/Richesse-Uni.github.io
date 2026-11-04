@@ -1,0 +1,300 @@
+/* ICC Amiens — charte rouge / or / blanc, inspirée de la bannière de l'église locale,
+   avec le bleu du visuel « Impact Centre Chrétien, c'est un centre de… ». */
+:root {
+  --rouge: #c4161c;
+  --rouge-fonce: #8e0f14;
+  --bordeaux: #3a0709;
+  --nuit: #160406;
+  --or: #d6a548;
+  --or-clair: #ecc77a;
+  --bleu: #1d3a9c;
+  --bleu-fonce: #13246b;
+  --fond: #ffffff;
+  --fond-2: #f8f4f2;
+  --texte: #1d1415;
+  --doux: #5f5456;
+  --ligne: #eadfdc;
+  --rayon: 18px;
+  --ombre: 0 10px 30px rgba(58, 7, 9, .08);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--rouge); }
+h1, h2, h3 { line-height: 1.15; margin: 0 0 .6em; }
+h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); font-weight: 800; letter-spacing: -.01em; }
+h3 { font-size: 1.15rem; font-weight: 700; }
+p { margin: 0 0 1em; }
+
+.icc-wrap { width: min(1140px, 100% - 32px); margin-inline: auto; }
+.icc-skip { position: absolute; left: -9999px; }
+.icc-skip:focus { left: 16px; top: 16px; z-index: 100; background: #fff; color: #000; padding: 8px 12px; border-radius: 8px; }
+:focus-visible { outline: 3px solid var(--or); outline-offset: 3px; border-radius: 4px; }
+
+.icc-rouge { color: var(--rouge); }
+.icc-lead { font-size: 1.15rem; color: var(--doux); }
+.icc-eyebrow {
+  display: inline-block;
+  font-size: .78rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--rouge); margin-bottom: .8rem;
+}
+.icc-eyebrow--or { color: var(--or); }
+
+/* Étiquette « AMIENS » façon bannière */
+.icc-tag {
+  display: inline-block;
+  background: var(--rouge);
+  color: #fff;
+  font-style: normal; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  font-size: .72em; padding: .12em .5em; border-radius: 3px;
+  transform: rotate(-1.5deg);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
+  vertical-align: middle;
+}
+.icc-tag--lg { font-size: .52em; padding: .18em .55em; margin-left: .2em; }
+
+/* ---------- Boutons ---------- */
+.icc-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5em;
+  padding: .85em 1.5em; border-radius: 999px;
+  font-weight: 700; font-size: .95rem; text-decoration: none;
+  color: #fff; background: var(--rouge); border: 2px solid var(--rouge);
+  transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+}
+.icc-btn:hover { background: var(--rouge-fonce); border-color: var(--rouge-fonce); color: #fff; transform: translateY(-1px); }
+.icc-btn--small { padding: .5em 1.1em; font-size: .88rem; }
+.icc-btn--light { background: #fff; border-color: #fff; color: var(--rouge-fonce); }
+.icc-btn--light:hover { background: var(--or-clair); border-color: var(--or-clair); color: var(--nuit); }
+.icc-btn--ghost { background: transparent; border-color: rgba(255, 255, 255, .55); color: #fff; }
+.icc-btn--ghost:hover { background: rgba(255, 255, 255, .12); border-color: #fff; }
+.icc-btn--outline { background: transparent; color: var(--rouge); }
+.icc-btn--outline:hover { background: var(--rouge); color: #fff; }
+.icc-btn--or { background: var(--or); border-color: var(--or); color: var(--nuit); }
+.icc-btn--or:hover { background: var(--or-clair); border-color: var(--or-clair); color: var(--nuit); }
+.icc-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.6rem; }
+.icc-actions--center { justify-content: center; }
+
+/* ---------- En-tête ---------- */
+.icc-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(22, 4, 6, .92);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+.icc-header__in { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.icc-brand { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-size: 1.05rem; letter-spacing: .02em; }
+.icc-brand img { border-radius: 10px; }
+.icc-brand strong { font-weight: 800; }
+.icc-nav { display: flex; align-items: center; gap: 24px; }
+.icc-nav a:not(.icc-btn) { color: rgba(255, 255, 255, .78); text-decoration: none; font-weight: 500; font-size: .93rem; }
+.icc-nav a:not(.icc-btn):hover { color: #fff; }
+.icc-burger { display: none; background: none; border: 0; padding: 8px; cursor: pointer; }
+.icc-burger span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; border-radius: 2px; }
+
+@media (max-width: 900px) {
+  .icc-burger { display: block; }
+  .icc-nav {
+    display: none; position: absolute; left: 0; right: 0; top: 68px;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--nuit); padding: 8px 16px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+  }
+  .icc-nav.is-open { display: flex; }
+  .icc-nav a:not(.icc-btn) { padding: 13px 0; border-bottom: 1px solid rgba(255, 255, 255, .08); }
+  .icc-nav .icc-btn { margin-top: 14px; }
+}
+
+/* ---------- Hero ---------- */
+.icc-hero {
+  color: #fff;
+  background:
+    radial-gradient(ellipse at 85% 20%, rgba(255, 90, 70, .35), transparent 55%),
+    radial-gradient(ellipse at 10% 90%, rgba(0, 0, 0, .55), transparent 60%),
+    linear-gradient(110deg, var(--bordeaux) 0%, var(--rouge-fonce) 45%, var(--rouge) 100%);
+  padding: clamp(56px, 9vw, 110px) 0;
+  overflow: hidden;
+}
+.icc-hero__in { display: flex; align-items: center; justify-content: center; gap: clamp(20px, 4vw, 48px); }
+.icc-hero__logo { width: clamp(110px, 16vw, 180px); border-radius: 24px; box-shadow: 0 18px 50px rgba(0, 0, 0, .35); flex-shrink: 0; }
+.icc-hero__titre { margin: 0; font-weight: 800; text-transform: uppercase; font-size: clamp(2rem, 5.6vw, 4rem); line-height: 1.02; letter-spacing: -.005em; }
+.icc-hero__titre span { display: block; }
+.icc-hero__sous { margin: .35em 0 0; color: var(--or); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; font-size: clamp(1rem, 2.2vw, 1.55rem); }
+.icc-hero__slogan { margin: 1.1em 0 0; max-width: 36ch; font-size: clamp(1rem, 1.6vw, 1.15rem); color: rgba(255, 255, 255, .9); }
+@media (max-width: 640px) {
+  .icc-hero__in { flex-direction: column; align-items: flex-start; }
+}
+
+/* ---------- Sections ---------- */
+.icc-section { padding: clamp(64px, 8vw, 104px) 0; }
+.icc-section--alt { background: var(--fond-2); }
+.icc-section--bleu {
+  color: #fff;
+  background: radial-gradient(ellipse at 20% 30%, #2d55c9 0%, transparent 60%), linear-gradient(140deg, var(--bleu-fonce), var(--bleu));
+}
+.icc-section--sombre { color: #fff; background: linear-gradient(120deg, var(--nuit), var(--bordeaux)); }
+.icc-head { max-width: 720px; margin-bottom: 40px; }
+.icc-head--center { margin-inline: auto; text-align: center; }
+.icc-split { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.icc-split--centre { grid-template-columns: 1fr 1fr; }
+.icc-split--haut { align-items: start; }
+@media (max-width: 860px) { .icc-split, .icc-split--centre { grid-template-columns: 1fr; } }
+
+/* Valeurs */
+.icc-valeurs { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.icc-valeurs li {
+  display: flex; gap: 18px; align-items: flex-start;
+  background: #fff; border: 1px solid var(--ligne); border-left: 4px solid var(--rouge);
+  border-radius: var(--rayon); padding: 22px 24px; box-shadow: var(--ombre);
+}
+.icc-valeurs span { font-weight: 800; font-size: 1.4rem; color: var(--or); line-height: 1; }
+.icc-valeurs h3 { margin-bottom: .25em; }
+.icc-valeurs p { margin: 0; color: var(--doux); }
+
+.icc-responsables { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 1.4rem; }
+.icc-responsable { display: flex; align-items: center; gap: 12px; }
+.icc-responsable img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+.icc-responsable span { display: block; color: var(--doux); font-size: .9rem; }
+
+/* Centre de… */
+.icc-centre__img { border-radius: 28px; box-shadow: 0 24px 60px rgba(0, 0, 0, .35); }
+.icc-piliers {
+  list-style: none; counter-reset: p; margin: 1.4rem 0 0; padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px;
+}
+.icc-piliers li {
+  counter-increment: p; display: flex; gap: 10px; align-items: baseline;
+  padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, .16); font-weight: 600;
+}
+.icc-piliers li::before { content: counter(p) "."; color: var(--or-clair); font-weight: 800; min-width: 1.6em; }
+@media (max-width: 480px) { .icc-piliers { grid-template-columns: 1fr; } }
+
+/* Cultes */
+.icc-cultes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.icc-culte {
+  background: #fff; border: 1px solid var(--ligne); border-radius: var(--rayon);
+  padding: 28px; box-shadow: var(--ombre);
+}
+.icc-culte p:last-child { margin: 0; color: var(--doux); }
+.icc-culte__jour { font-size: .8rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--rouge); margin-bottom: .4em; }
+.icc-culte__heure { font-size: 1.6rem; font-weight: 800; color: var(--texte); margin-bottom: .5em; }
+.icc-culte--principal { background: linear-gradient(140deg, var(--rouge-fonce), var(--rouge)); color: #fff; border: 0; }
+.icc-culte--principal .icc-culte__jour { color: var(--or-clair); }
+.icc-culte--principal .icc-culte__heure { color: #fff; }
+.icc-culte--principal p:last-child { color: rgba(255, 255, 255, .85); }
+
+.icc-lieu {
+  margin-top: 40px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 32px; align-items: center;
+  background: var(--fond-2); border-radius: 24px; padding: clamp(24px, 4vw, 40px);
+}
+.icc-lieu h3 { font-size: 1.5rem; }
+.icc-carte { width: 100%; min-height: 280px; border: 0; border-radius: var(--rayon); background: #ddd; }
+.icc-carte--vide {
+  display: grid; place-items: center;
+  background:
+    repeating-linear-gradient(45deg, rgba(196, 22, 28, .06) 0 12px, transparent 12px 24px),
+    linear-gradient(140deg, #fff, #f1e6e3);
+  border: 1px dashed var(--ligne);
+}
+.icc-carte--vide span { font-weight: 800; font-size: 2rem; color: var(--rouge); letter-spacing: .1em; text-transform: uppercase; opacity: .5; }
+@media (max-width: 860px) { .icc-lieu { grid-template-columns: 1fr; } }
+
+/* Vie d'église */
+.icc-grille { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 900px) { .icc-grille { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .icc-grille { grid-template-columns: 1fr; } }
+.icc-carte-vie {
+  background: #fff; border: 1px solid var(--ligne); border-radius: var(--rayon);
+  padding: 28px; box-shadow: var(--ombre); transition: transform .2s ease, box-shadow .2s ease;
+}
+.icc-carte-vie:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(58, 7, 9, .12); }
+.icc-carte-vie svg {
+  width: 48px; height: 48px; padding: 11px; margin-bottom: 14px; border-radius: 14px;
+  background: #fbe9e9; fill: none; stroke: var(--rouge); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.icc-carte-vie p { margin: 0; color: var(--doux); }
+
+/* Première visite */
+.icc-faq { display: grid; gap: 12px; }
+.icc-faq details { background: var(--fond-2); border-radius: 14px; padding: 4px 22px; border: 1px solid var(--ligne); }
+.icc-faq summary { cursor: pointer; font-weight: 700; padding: 16px 0; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+.icc-faq summary::-webkit-details-marker { display: none; }
+.icc-faq summary::after { content: "+"; color: var(--rouge); font-size: 1.3rem; line-height: 1; }
+.icc-faq details[open] summary::after { content: "–"; }
+.icc-faq details p { color: var(--doux); padding-bottom: 8px; }
+
+/* Dons */
+.icc-dons { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.icc-dons > div { max-width: 680px; }
+.icc-dons p { color: rgba(255, 255, 255, .82); }
+.icc-verset { margin: 1.2rem 0; padding-left: 20px; border-left: 3px solid var(--or); }
+.icc-verset p { font-size: 1.15rem; font-style: italic; color: #fff; margin-bottom: .4em; }
+.icc-verset cite { font-style: normal; font-weight: 700; color: var(--or); font-size: .9rem; }
+@media (max-width: 760px) { .icc-dons { flex-direction: column; align-items: flex-start; } }
+
+/* Contact */
+.icc-cta {
+  text-align: center; color: #fff;
+  background:
+    radial-gradient(ellipse at 90% 0%, rgba(255, 110, 90, .35), transparent 55%),
+    linear-gradient(120deg, var(--rouge-fonce), var(--rouge));
+  border-radius: 28px; padding: clamp(36px, 6vw, 72px) clamp(20px, 5vw, 64px);
+}
+.icc-cta .icc-eyebrow { color: var(--or-clair); }
+.icc-cta p { max-width: 58ch; margin-inline: auto; color: rgba(255, 255, 255, .9); }
+
+/* ---------- Pied de page ---------- */
+.icc-footer { background: var(--nuit); color: rgba(255, 255, 255, .72); padding: 56px 0 24px; font-size: .95rem; }
+.icc-footer a { color: rgba(255, 255, 255, .85); text-decoration: none; }
+.icc-footer a:hover { color: #fff; text-decoration: underline; }
+.icc-footer__in { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 36px; }
+.icc-footer__brand { display: flex; gap: 14px; align-items: center; color: #fff; }
+.icc-footer__brand img { border-radius: 12px; }
+.icc-footer__brand strong { display: block; text-transform: uppercase; letter-spacing: .02em; }
+.icc-footer__brand small { display: block; color: var(--or); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-top: 4px; }
+.icc-footer__slogan { margin-top: 1rem; max-width: 36ch; }
+.icc-footer__title { color: #fff; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 1rem; }
+.icc-footer__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.icc-footer__copy { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, .1); font-size: .82rem; color: rgba(255, 255, 255, .5); }
+@media (max-width: 760px) { .icc-footer__in { grid-template-columns: 1fr; } }
+
+/* Rattachement à l'église principale */
+.icc-lien { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 0; max-width: 900px; margin: 0 auto; }
+.icc-lien__eglise {
+  background: #fff; border: 1px solid var(--ligne); border-radius: var(--rayon);
+  padding: 26px 24px; text-align: center; box-shadow: var(--ombre);
+}
+.icc-lien__eglise strong { display: block; font-size: 1.35rem; font-weight: 800; }
+.icc-lien__eglise small { color: var(--doux); }
+.icc-lien__eglise--mere { background: linear-gradient(140deg, var(--rouge-fonce), var(--rouge)); color: #fff; border: 0; }
+.icc-lien__eglise--mere small { color: rgba(255, 255, 255, .85); }
+.icc-lien__label { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--rouge); margin-bottom: .4em; }
+.icc-lien__eglise--mere .icc-lien__label { color: var(--or-clair); }
+.icc-lien__fleche { position: relative; width: 250px; height: 2px; background: var(--or); margin: 0 6px; }
+.icc-lien__fleche::after {
+  content: ""; position: absolute; right: -2px; top: -6px;
+  border: 7px solid transparent; border-left: 10px solid var(--or); border-right: 0;
+}
+.icc-lien__fleche span {
+  position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%);
+  white-space: nowrap; font-size: .7rem; font-weight: 700; letter-spacing: .04em; color: var(--doux);
+}
+.icc-lien__points { list-style: none; padding: 0; margin: 40px auto 0; max-width: 1000px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.icc-lien__points li { border-top: 3px solid var(--or); padding-top: 14px; color: var(--doux); }
+.icc-lien__points strong { display: block; color: var(--texte); margin-bottom: .2em; }
+@media (max-width: 760px) {
+  .icc-lien { grid-template-columns: 1fr; }
+  .icc-lien__fleche { width: 2px; height: 70px; margin: 6px auto; }
+  .icc-lien__fleche::after { right: -6px; top: auto; bottom: -2px; border: 7px solid transparent; border-top: 10px solid var(--or); border-bottom: 0; }
+  .icc-lien__fleche span { left: 50%; bottom: 50%; transform: translate(-50%, 50%); background: var(--fond-2); padding: 4px 10px; }
+  .icc-lien__points { grid-template-columns: 1fr; }
+}
