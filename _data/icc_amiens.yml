@@ -1,0 +1,54 @@
+# Informations d'ICC Amiens (Impact Centre Chrétien — Église locale d'Amiens).
+# Modifie ces valeurs : elles sont reprises automatiquement sur tout le site /icc-amiens/.
+# Un champ laissé vide ("") n'est simplement pas affiché (ou remplacé par « à confirmer »).
+
+nom: Impact Centre Chrétien Amiens
+nom_court: ICC Amiens
+slogan: "Une église où l'amour de Dieu transforme des gens ordinaires en champions !"
+ville: Amiens
+
+# --- Adresse du lieu de culte -------------------------------------------------
+# Renseigne l'adresse complète : un bouton « Itinéraire » et une carte apparaissent alors.
+adresse: ""          # ex. "12 rue Exemple"
+code_postal: ""      # ex. "80000"
+
+# --- Cultes et rencontres -----------------------------------------------------
+# Une ligne par rendez-vous. Laisse "heure" vide tant qu'elle n'est pas confirmée.
+cultes:
+  - jour: Dimanche
+    titre: Culte de célébration
+    heure: ""
+    detail: "Louange, adoration et prédication de la Parole. Programme pour les enfants pendant le culte."
+    principal: true
+  - jour: En semaine
+    titre: Réunion de prière
+    heure: ""
+    detail: "Un temps pour prier ensemble pour l'église, la ville d'Amiens et les nations."
+  - jour: En semaine
+    titre: Étude biblique / Formation
+    heure: ""
+    detail: "Grandir dans la connaissance de la Parole et être équipé pour sa vie de disciple."
+
+# --- Pasteurs / responsables --------------------------------------------------
+# Ajoute une entrée par responsable. "photo" est facultatif (chemin dans assets/imgs/icc-amiens/).
+responsables: []
+#  - nom: "Pasteur Prénom Nom"
+#    role: "Pasteur responsable"
+#    photo: "/assets/imgs/icc-amiens/pasteur.jpg"
+
+# --- Contact ------------------------------------------------------------------
+email: ""
+telephone: ""        # ex. "06 00 00 00 00"
+whatsapp: ""         # lien wa.me, ex. "https://wa.me/33600000000"
+
+# --- Réseaux sociaux de l'église locale (vide = non affiché) -------------------
+reseaux:
+  facebook: ""
+  instagram: ""
+  youtube: ""
+  tiktok: ""
+
+# --- Liens vers le réseau ICC -------------------------------------------------
+site_icc: "https://impactcentrechretien.com/"
+adresses_icc: "https://impactcentrechretien.com/accueil/adresses/"
+lien_dons: "https://impactcentrechretien.com/"   # remplace par la page de dons d'ICC Amiens si elle existe
