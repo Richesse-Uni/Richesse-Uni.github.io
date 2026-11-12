@@ -20,5 +20,13 @@ $link: #ef2e31;
 }
 
 .hero_image{
- 
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+// Photo de la page d'accueil : taille réduite et centrée dans sa colonne
+.hero-banner figure.image:has(> .hero_image) {
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
 }
