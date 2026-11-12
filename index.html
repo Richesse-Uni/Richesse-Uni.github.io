@@ -1,0 +1,151 @@
+---
+layout: default
+title: Accueil
+description: "Richesse Otsie — Étudiant en 3e année de Bachelor Ingénierie Numérique (UniLaSalle Amiens), à la recherche d'une alternance en Lean Manufacturing & Supply Chain. Disponible immédiatement."
+permalink: /
+extra_css:
+  - /assets/css/realisations.css
+  - /assets/css/accueil.css
+robots: noindex
+---
+{%- assign cv = site.data.cv -%}
+{%- assign projets = site.products | sort: "ordre" -%}
+<div class="acc">
+
+  <!-- ===== Présentation ===== -->
+  <header class="acc-hero">
+    <div class="acc-hero__texte">
+      <p class="acc-hero__salut">Bonjour, je suis</p>
+      <h1 class="acc-hero__nom">{{ cv.nom }}</h1>
+      <p class="acc-hero__titre">{{ cv.titre }}</p>
+      <p class="acc-hero__accroche">{{ cv.accroche }}</p>
+      <ul class="acc-badges">
+        {% for b in cv.badges %}<li><i class="{{ b.icone }}" aria-hidden="true"></i> {{ b.texte }}</li>{% endfor %}
+      </ul>
+      <div class="acc-actions">
+        <a class="acc-btn acc-btn--blanc" href="{{ cv.cv_pdf | relative_url }}" download><i class="fa-solid fa-download" aria-hidden="true"></i> Télécharger mon CV</a>
+        <a class="acc-btn" href="{{ '/realisations/' | relative_url }}"><i class="fa-solid fa-folder-open" aria-hidden="true"></i> Mes réalisations</a>
+        <a class="acc-btn acc-btn--rond" href="mailto:{{ cv.email }}" aria-label="M'écrire un e-mail"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+        <a class="acc-btn acc-btn--rond" href="{{ cv.linkedin }}" target="_blank" rel="noopener" aria-label="Mon profil LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <div class="acc-hero__visuel">
+      <img class="acc-hero__photo" src="{{ cv.photo | relative_url }}" alt="Photo de {{ cv.nom }}" width="320" height="320">
+      <span class="acc-hero__pastille"><span class="acc-point" aria-hidden="true"></span> Disponible pour une alternance</span>
+    </div>
+  </header>
+
+  <!-- ===== Chiffres ===== -->
+  <ul class="acc-chiffres" aria-label="En bref">
+    <li><strong>{{ cv.experiences.size }}</strong><span>expériences</span></li>
+    <li><strong>{{ projets.size }}</strong><span>réalisations</span></li>
+    <li><strong>3<sup>e</sup></strong><span>année de Bachelor</span></li>
+    <li><strong>1/1</strong><span>mois entreprise / campus</span></li>
+  </ul>
+
+  <!-- ===== Ce que j'apporte ===== -->
+  <section class="acc-section">
+    <div class="acc-tete">
+      <p class="acc-eyebrow">Ce que j'apporte</p>
+      <h2>Des flux plus simples, plus fiables, plus performants</h2>
+    </div>
+    <div class="acc-atouts">
+      <article class="acc-atout">
+        <span class="acc-icone" aria-hidden="true"><i class="fa-solid fa-industry"></i></span>
+        <h3>Lean &amp; amélioration continue</h3>
+        <p>Cartographier les flux, chasser les gaspillages et stabiliser les postes : VSM, flux tiré, 5S, AMDEC.</p>
+      </article>
+      <article class="acc-atout">
+        <span class="acc-icone" aria-hidden="true"><i class="fa-solid fa-boxes-stacked"></i></span>
+        <h3>Supply Chain &amp; logistique</h3>
+        <p>Gestion des stocks, organisation des flux et respect des standards, avec une expérience terrain en entrepôt automatisé.</p>
+      </article>
+      <article class="acc-atout">
+        <span class="acc-icone" aria-hidden="true"><i class="fa-solid fa-chart-line"></i></span>
+        <h3>Data &amp; outils numériques</h3>
+        <p>Python, SQL, Talend : collecter, structurer et automatiser les données pour piloter la performance.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== Réalisations à la une ===== -->
+  <section class="acc-section">
+    <div class="acc-tete acc-tete--ligne">
+      <div>
+        <p class="acc-eyebrow">Portfolio</p>
+        <h2>Réalisations à la une</h2>
+      </div>
+      <a class="acc-lien" href="{{ '/realisations/' | relative_url }}">Toutes mes réalisations <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+    </div>
+    <div class="rea rea-grille acc-rea">
+      {% for r in projets limit: 3 %}
+      <article class="rea-carte">
+        <a class="rea-carte__lien" href="{{ r.url | relative_url }}" aria-label="Voir le projet : {{ r.title }}"></a>
+        {% include realisation-couverture.html r=r %}
+        <div class="rea-carte__corps">
+          <span class="rea-cat rea-cat--{{ r.filtre }}">{{ r.categorie }}</span>
+          <h3 class="rea-carte__titre">{{ r.title }}</h3>
+          <p class="rea-carte__texte">{{ r.description }}</p>
+          <div class="rea-carte__pied">
+            <span class="rea-voir">Voir le projet <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- ===== Parcours en bref ===== -->
+  <section class="acc-section">
+    <div class="acc-tete acc-tete--ligne">
+      <div>
+        <p class="acc-eyebrow">Parcours</p>
+        <h2>Mon parcours en bref</h2>
+      </div>
+      <a class="acc-lien" href="{{ '/parcours/' | relative_url }}">Voir mon parcours complet <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+    </div>
+    <div class="acc-parcours">
+      <div class="acc-bloc">
+        <h3><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Expériences</h3>
+        <ol class="acc-frise">
+          {% for e in cv.experiences %}
+          <li>
+            <span class="acc-frise__date">{{ e.periode }}</span>
+            <strong>{{ e.titre }}</strong>
+            <span class="acc-frise__lieu">{{ e.structure }}</span>
+          </li>
+          {% endfor %}
+        </ol>
+      </div>
+      <div class="acc-bloc">
+        <h3><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Formation</h3>
+        <ol class="acc-frise">
+          {% for f in cv.formation %}
+          <li>
+            <span class="acc-frise__date">{{ f.periode }}</span>
+            <strong>{{ f.titre }}</strong>
+            <span class="acc-frise__lieu">{{ f.ecole }}</span>
+          </li>
+          {% endfor %}
+        </ol>
+        <h3 class="acc-bloc__h3"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Outils</h3>
+        <ul class="acc-outils">
+          <li>Python</li><li>SQL</li><li>Talend</li><li>SolidWorks</li><li>Fusion 360</li><li>BPMN</li><li>FANUC</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <aside class="acc-cta">
+    <div>
+      <h2>Et si on travaillait ensemble ?</h2>
+      <p>Je suis disponible immédiatement pour une alternance en Lean Manufacturing &amp; Supply Chain, en Hauts-de-France ou en Île-de-France.</p>
+    </div>
+    <div class="acc-actions">
+      <a class="acc-btn acc-btn--blanc" href="mailto:{{ cv.email }}?subject=Alternance%20Lean%20%26%20Supply%20Chain"><i class="fa-solid fa-envelope" aria-hidden="true"></i> {{ cv.email }}</a>
+      <a class="acc-btn" href="{{ cv.linkedin }}" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
+    </div>
+  </aside>
+
+</div>

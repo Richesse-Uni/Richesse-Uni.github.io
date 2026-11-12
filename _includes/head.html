@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="{{ site.theme_color | default: '#ffffff' }}">
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/app.css">
-    {% if page.extra_css %}<link rel="stylesheet" href="{{ page.extra_css | relative_url }}">{% endif %}
+    {% if page.extra_css.first %}{% for css in page.extra_css %}<link rel="stylesheet" href="{{ css | relative_url }}">{% endfor %}{% elsif page.extra_css %}<link rel="stylesheet" href="{{ page.extra_css | relative_url }}">{% endif %}
     <link
         rel="shortcut icon"
         type="image/png"

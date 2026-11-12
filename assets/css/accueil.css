@@ -1,0 +1,154 @@
+/* Page d'accueil — même charte que « Mon parcours » et « Mes réalisations ». */
+.acc {
+  --rouge: #ef2e31;
+  --rouge-fonce: #b9161a;
+  --rouge-doux: #fdecec;
+  --encre: #1f2430;
+  --gris: #5b6170;
+  --ligne: #ebe7e7;
+  --rayon: 18px;
+  --ombre: 0 8px 28px rgba(31, 36, 48, .07);
+  color: var(--encre);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.acc h1, .acc h2, .acc h3 { color: var(--encre); line-height: 1.2; }
+
+/* ---------- Présentation ---------- */
+.acc-hero {
+  display: grid; grid-template-columns: 1.35fr 1fr; gap: 40px; align-items: center;
+  padding: 48px 48px; border-radius: 28px; color: #fff;
+  background:
+    radial-gradient(ellipse at 95% 0%, rgba(255, 255, 255, .2), transparent 50%),
+    radial-gradient(ellipse at 0% 100%, rgba(0, 0, 0, .18), transparent 55%),
+    linear-gradient(125deg, var(--rouge-fonce) 0%, var(--rouge) 65%, #ff5a4d 100%);
+  box-shadow: 0 20px 55px rgba(239, 46, 49, .25);
+}
+.acc-hero__salut { margin: 0; font-size: 1.05rem; opacity: .9; }
+.acc .acc-hero__nom { color: #fff; font-size: clamp(2.3rem, 5vw, 3.4rem); font-weight: 700; margin: .1rem 0 .3rem; letter-spacing: -.01em; }
+.acc-hero__titre {
+  display: inline-block; margin: 0 0 1rem; padding: .3em .9em; border-radius: 10px;
+  background: rgba(255, 255, 255, .95); color: var(--rouge-fonce); font-weight: 700; font-size: 1.1rem;
+}
+.acc-hero__accroche { margin: 0 0 1.2rem; max-width: 56ch; font-size: 1.05rem; opacity: .96; }
+.acc .acc-badges { list-style: none; margin: 0 0 1.5rem; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.acc-badges li { background: rgba(255, 255, 255, .15); border: 1px solid rgba(255, 255, 255, .3); padding: .35em .85em; border-radius: 999px; font-size: .88rem; }
+.acc-badges i { margin-right: .3em; }
+
+.acc-hero__visuel { position: relative; justify-self: center; width: fit-content; }
+.acc-hero__visuel::before {
+  content: ""; position: absolute; inset: -14px; border-radius: 34px;
+  border: 2px dashed rgba(255, 255, 255, .45);
+}
+.acc-hero__photo {
+  position: relative; display: block; width: 320px; max-width: 100%; height: auto; aspect-ratio: 1;
+  object-fit: cover; border-radius: 26px; border: 6px solid #fff; box-shadow: 0 18px 45px rgba(0, 0, 0, .25);
+}
+.acc-hero__pastille {
+  position: absolute; left: 50%; bottom: -18px; transform: translateX(-50%); white-space: nowrap;
+  display: inline-flex; align-items: center; gap: .5em;
+  background: #fff; color: var(--encre); font-weight: 700; font-size: .88rem;
+  padding: .55em 1em; border-radius: 999px; box-shadow: 0 10px 25px rgba(0, 0, 0, .18);
+}
+.acc-point { width: 10px; height: 10px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 0 rgba(34, 197, 94, .6); animation: acc-pulse 2s infinite; }
+@keyframes acc-pulse { 70% { box-shadow: 0 0 0 9px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
+@media (prefers-reduced-motion: reduce) { .acc-point { animation: none; } }
+
+/* ---------- Boutons ---------- */
+.acc-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.acc-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5em;
+  padding: .7em 1.3em; border-radius: 999px; font-weight: 600; text-decoration: none;
+  color: #fff; border: 2px solid rgba(255, 255, 255, .7);
+  transition: transform .15s ease, background .15s ease;
+}
+.acc-btn:hover { color: #fff; background: rgba(255, 255, 255, .14); transform: translateY(-1px); }
+.acc-btn--blanc { background: #fff; border-color: #fff; color: var(--rouge-fonce); }
+.acc-btn--blanc:hover { background: #fff3f3; color: var(--rouge-fonce); }
+.acc-btn--rond { width: 46px; height: 46px; padding: 0; font-size: 1.05rem; }
+
+/* ---------- Chiffres ---------- */
+.acc .acc-chiffres {
+  list-style: none; margin: 44px 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  background: #fff; border: 1px solid var(--ligne); border-radius: 20px; box-shadow: var(--ombre);
+}
+.acc-chiffres li { display: flex; flex-direction: column; align-items: center; padding: 22px 10px; text-align: center; }
+.acc-chiffres li + li { border-left: 1px solid var(--ligne); }
+.acc-chiffres strong { font-size: 2rem; font-weight: 700; color: var(--rouge); line-height: 1.1; }
+.acc-chiffres sup { font-size: .5em; }
+.acc-chiffres span { color: var(--gris); font-size: .92rem; }
+
+/* ---------- Sections ---------- */
+.acc-section { padding-top: 60px; }
+.acc-tete { margin-bottom: 26px; }
+.acc-tete--ligne { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+.acc-eyebrow { margin: 0 0 .35rem; font-size: .8rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--rouge-fonce); }
+.acc .acc-tete h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 700; margin: 0; }
+.acc-lien { color: var(--rouge-fonce); font-weight: 700; text-decoration: none; }
+.acc-lien i { transition: transform .2s ease; }
+.acc-lien:hover { color: var(--rouge); }
+.acc-lien:hover i { transform: translateX(4px); }
+
+/* Ce que j'apporte */
+.acc-atouts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.acc-atout {
+  padding: 28px 26px; border-radius: var(--rayon); background: #fff; border: 1px solid var(--ligne); box-shadow: var(--ombre);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.acc-atout:hover { transform: translateY(-3px); border-color: rgba(239, 46, 49, .35); box-shadow: 0 16px 38px rgba(31, 36, 48, .1); }
+.acc .acc-atout h3 { font-size: 1.2rem; font-weight: 700; margin: 16px 0 .5rem; }
+.acc-atout p { margin: 0; color: var(--gris); }
+.acc-icone {
+  display: inline-grid; place-items: center; width: 54px; height: 54px; border-radius: 15px;
+  background: linear-gradient(135deg, var(--rouge-fonce), var(--rouge)); color: #fff; font-size: 1.35rem;
+}
+
+/* Réalisations (cartes reprises de realisations.css) */
+.acc .acc-rea { max-width: none; margin: 0; }
+
+/* Parcours en bref */
+.acc-parcours { display: grid; grid-template-columns: 1.2fr 1fr; gap: 22px; }
+.acc-bloc { padding: 28px; border-radius: var(--rayon); background: #fff; border: 1px solid var(--ligne); box-shadow: var(--ombre); }
+.acc .acc-bloc h3 { display: flex; align-items: center; gap: .5em; font-size: 1.15rem; font-weight: 700; margin: 0 0 18px; }
+.acc-bloc h3 i { color: var(--rouge); }
+.acc .acc-bloc h3.acc-bloc__h3 { margin-top: 28px; }
+.acc .acc-frise { list-style: none; margin: 0; padding: 0 0 0 18px; border-left: 2px solid var(--rouge-doux); }
+.acc-frise li { position: relative; padding: 0 0 18px 16px; display: flex; flex-direction: column; }
+.acc-frise li:last-child { padding-bottom: 0; }
+.acc-frise li::before {
+  content: ""; position: absolute; left: -26px; top: 4px; width: 14px; height: 14px; border-radius: 50%;
+  background: #fff; border: 3px solid var(--rouge);
+}
+.acc-frise__date { font-size: .8rem; font-weight: 700; color: var(--rouge-fonce); }
+.acc-frise__lieu { color: var(--gris); font-size: .93rem; }
+.acc .acc-outils { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.acc-outils li { background: var(--rouge-doux); padding: .35em .85em; border-radius: 10px; font-size: .9rem; }
+
+/* Contact */
+.acc-cta {
+  margin: 64px 0 20px; padding: 36px 40px; border-radius: 26px; color: #fff;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  background: linear-gradient(120deg, #1f2430, #3a2026);
+}
+.acc .acc-cta h2 { color: #fff; font-size: 1.7rem; margin: 0 0 .35rem; }
+.acc-cta p { margin: 0; opacity: .85; max-width: 56ch; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .acc-hero { grid-template-columns: 1fr; padding: 36px 30px 48px; }
+  .acc-hero__visuel { order: -1; }
+  .acc-hero__photo { width: 220px; }
+  .acc-atouts { grid-template-columns: 1fr; }
+  .acc-parcours { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .acc-hero { padding: 30px 20px 40px; gap: 34px; }
+  .acc-hero__titre { font-size: 1rem; }
+  .acc .acc-chiffres { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .acc-chiffres li:nth-child(3) { border-left: 0; }
+  .acc-chiffres li:nth-child(n+3) { border-top: 1px solid var(--ligne); }
+  .acc-cta { padding: 28px 22px; }
+  .acc-cta .acc-actions, .acc-cta .acc-btn { width: 100%; }
+  .acc-bloc { padding: 22px; }
+}
