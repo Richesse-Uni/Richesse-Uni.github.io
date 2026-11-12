@@ -5,7 +5,7 @@ Site personnel (CV / portfolio) de Richesse Otsie, généré avec [Jekyll](https
 ## Structure
 
 - [`index.md`](index.md) — page d'accueil
-- [`parcours.md`](parcours.md) — formation, expériences, compétences
+- [`parcours.html`](parcours.html) — CV en ligne (expériences, formation, compétences…) ; **le contenu se modifie dans [`_data/cv.yml`](_data/cv.yml)**, styles dans [`assets/css/cv.css`](assets/css/cv.css)
 - [`_products/`](_products) — réalisations/projets
 - [`outils/fiche-exploitation-journaliere.html`](outils/fiche-exploitation-journaliere.html) — outil de gestion de caisse développé pour Les Boutiques Louis-Prisque
 - [`iec/`](iec) — site d'**Impact Entrepreneurs Chrétiens (IEC)**, accessible sur `/iec/`
