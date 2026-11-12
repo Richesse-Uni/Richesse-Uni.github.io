@@ -1,0 +1,106 @@
+# Contenu de la page « Mon parcours » (/parcours/).
+# Modifie ce fichier pour mettre à jour le CV en ligne : la mise en page suit automatiquement.
+
+nom: Richesse OTSIE
+titre: Alternance Lean Manufacturing & Supply Chain
+accroche: "Étudiant en 3e année de Bachelor Ingénierie Numérique (UniLaSalle Amiens), je recherche une alternance pour ma dernière année afin de contribuer à l'amélioration continue des flux de votre entreprise."
+photo: /assets/imgs/photo-richesse.jpg
+email: otsierichesse20@gmail.com
+linkedin: https://www.linkedin.com/in/richesse-otsie-14b612268
+cv_pdf: /assets/docs/CV_Richesse_Otsie.pdf
+badges:
+  - icone: fa-solid fa-bolt
+    texte: Disponible immédiatement
+  - icone: fa-solid fa-arrows-rotate
+    texte: "Rythme : 1 mois entreprise / 1 mois campus"
+  - icone: fa-solid fa-location-dot
+    texte: Amiens (80) · Mobile Hauts-de-France & Île-de-France
+
+experiences:
+  - periode: "2026"
+    titre: Stagiaire développeur Python
+    structure: Mobilité internationale
+    detail: Application de simulation solaire
+    icone: fa-solid fa-solar-panel
+    missions:
+      - Développement d'une application interactive en Python pour simuler et analyser différents scénarios solaires
+      - Collecte, traitement et structuration de données d'irradiation
+      - Paramétrage et comparaison de scénarios pour identifier les configurations les plus performantes
+      - Automatisation du traitement et de la visualisation des données pour fiabiliser l'analyse
+      - Application d'une démarche d'optimisation et d'amélioration continue
+    tags: [Python, Data, Visualisation, Amélioration continue]
+  - periode: "2025 – 2026"
+    titre: Préparateur de commandes en stow
+    structure: Amazon
+    detail: 2 mois, chaque week-end
+    icone: fa-solid fa-boxes-stacked
+    missions:
+      - Organisation et rangement des articles dans les pods (étagères automatisées)
+      - Optimisation du rangement pour faciliter les flux et la gestion des stocks
+      - Travail dans un environnement de logistique automatisé
+      - Respect des procédures de stockage et des standards qualité
+      - Respect des standards opérationnels et des objectifs de performance
+    tags: [Logistique, Gestion des stocks, Qualité]
+  - periode: "2024 – 2025"
+    titre: Projet entrepreneurial — Mode durable et responsable
+    structure: Les Entreps
+    detail: 6 mois
+    icone: fa-solid fa-shirt
+    missions:
+      - Conception et lancement d'un projet de mode durable basé sur l'upcycling
+      - Planification de la production, organisation des flux et des postes de travail
+      - Équilibrage des charges et définition des objectifs de production
+      - Gestion des stocks et organisation des flux logistiques
+      - "Mise en place d'une démarche Lean Manufacturing : VSM, flux tiré et réduction des gaspillages"
+      - Contrôle qualité et préparation des commandes
+    tags: [Lean, VSM, Flux tiré, Planification]
+
+formation:
+  - periode: "2024 – 2027"
+    titre: Bachelor en Ingénierie Numérique
+    ecole: UniLaSalle — Campus d'Amiens
+    icone: fa-solid fa-graduation-cap
+  - periode: "2022 – 2023"
+    titre: Baccalauréat scientifique
+    ecole: C.S Anne Marie-Javouhey — Brazzaville, Congo
+    icone: fa-solid fa-school
+
+projets:
+  - titre: Robot suiveur de ligne
+    detail: Conception en électronique appliquée
+    icone: fa-solid fa-robot
+  - titre: Site web avec base de données
+    detail: Projet BDD — MySQL & PHP
+    icone: fa-solid fa-database
+
+competences:
+  - titre: Lean Manufacturing & Supply Chain
+    icone: fa-solid fa-industry
+    items: [Gestion des stocks, Optimisation des flux, Lean Manufacturing, 5S, AMDEC, Amélioration continue, Pilotage de la performance industrielle]
+  - titre: Data & Programmation
+    icone: fa-solid fa-code
+    items: [Python, SQL, Talend (ETL), Analyse et modélisation de données, Programmation de robots FANUC]
+  - titre: Processus & Industrialisation
+    icone: fa-solid fa-gears
+    items: [Modélisation BPMN, Fusion 360, SolidWorks, Fabrication additive]
+  - titre: Gestion de projets
+    icone: fa-solid fa-diagram-project
+    items: [Animation de projets, Pilotage de projets d'amélioration des performances industrielles]
+
+langues:
+  - nom: Français
+    niveau: Natif
+    pourcentage: 100
+  - nom: Anglais
+    niveau: B1 avancé (certifié EnglishScore)
+    pourcentage: 60
+
+atouts: [Enthousiaste et dynamique, Esprit d'équipe, Capacité d'adaptation, Polyvalence, Bonne prise d'initiative]
+
+interets:
+  - nom: Lecture
+    icone: fa-solid fa-book-open
+  - nom: Roller skate
+    icone: fa-solid fa-person-skating
+  - nom: Basket-ball
+    icone: fa-solid fa-basketball

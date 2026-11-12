@@ -1,0 +1,135 @@
+---
+layout: default
+title: Mon parcours
+description: "Parcours de Richesse Otsie — Bachelor Ingénierie Numérique (UniLaSalle Amiens), à la recherche d'une alternance en Lean Manufacturing & Supply Chain."
+permalink: /parcours/
+extra_css: /assets/css/cv.css
+robots: noindex
+---
+{%- assign cv = site.data.cv -%}
+<div class="cv">
+
+  <header class="cv-hero">
+    <img class="cv-hero__photo" src="{{ cv.photo | relative_url }}" alt="Photo de {{ cv.nom }}" width="160" height="160">
+    <div class="cv-hero__texte">
+      <p class="cv-hero__eyebrow">Mon parcours</p>
+      <h1 class="cv-hero__nom">{{ cv.nom }}</h1>
+      <p class="cv-hero__titre">{{ cv.titre }}</p>
+      <p class="cv-hero__accroche">{{ cv.accroche }}</p>
+      <ul class="cv-badges">
+        {% for b in cv.badges %}<li><i class="{{ b.icone }}" aria-hidden="true"></i> {{ b.texte }}</li>{% endfor %}
+      </ul>
+      <div class="cv-actions">
+        <a class="cv-btn cv-btn--plein" href="{{ cv.cv_pdf | relative_url }}" download><i class="fa-solid fa-download" aria-hidden="true"></i> Télécharger mon CV</a>
+        <a class="cv-btn" href="mailto:{{ cv.email }}"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Me contacter</a>
+        <a class="cv-btn" href="{{ cv.linkedin }}" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="cv-sommaire" aria-label="Sections du parcours">
+    <a href="#expériences">Expériences</a>
+    <a href="#formation">Formation</a>
+    <a href="#compétences">Compétences</a>
+    <a href="#centres-dintérêt">Centres d'intérêt</a>
+  </nav>
+
+  <section class="cv-section" id="expériences">
+    <h2 class="cv-h2"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Expériences</h2>
+    <ol class="cv-timeline">
+      {% for e in cv.experiences %}
+      <li class="cv-timeline__item">
+        <span class="cv-timeline__point" aria-hidden="true"><i class="{{ e.icone }}"></i></span>
+        <article class="cv-carte">
+          <div class="cv-carte__haut">
+            <span class="cv-periode">{{ e.periode }}</span>
+            {% if e.detail %}<span class="cv-detail">{{ e.detail }}</span>{% endif %}
+          </div>
+          <h3 class="cv-carte__titre">{{ e.titre }}</h3>
+          <p class="cv-carte__structure">{{ e.structure }}</p>
+          <ul class="cv-missions">
+            {% for m in e.missions %}<li>{{ m }}</li>{% endfor %}
+          </ul>
+          {% if e.tags %}<ul class="cv-tags">{% for t in e.tags %}<li>{{ t }}</li>{% endfor %}</ul>{% endif %}
+        </article>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section class="cv-section" id="formation">
+    <h2 class="cv-h2"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Formation</h2>
+    <div class="cv-grille cv-grille--2">
+      {% for f in cv.formation %}
+      <article class="cv-carte cv-carte--icone">
+        <span class="cv-icone" aria-hidden="true"><i class="{{ f.icone }}"></i></span>
+        <div>
+          <span class="cv-periode">{{ f.periode }}</span>
+          <h3 class="cv-carte__titre">{{ f.titre }}</h3>
+          <p class="cv-carte__structure">{{ f.ecole }}</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    <h3 class="cv-h3">Projets académiques</h3>
+    <div class="cv-grille cv-grille--2">
+      {% for p in cv.projets %}
+      <article class="cv-carte cv-carte--icone cv-carte--leger">
+        <span class="cv-icone cv-icone--doux" aria-hidden="true"><i class="{{ p.icone }}"></i></span>
+        <div>
+          <h4 class="cv-carte__titre">{{ p.titre }}</h4>
+          <p class="cv-carte__structure">{{ p.detail }}</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="cv-section" id="compétences">
+    <h2 class="cv-h2"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Compétences</h2>
+    <div class="cv-grille cv-grille--2">
+      {% for c in cv.competences %}
+      <article class="cv-carte">
+        <h3 class="cv-carte__titre cv-carte__titre--icone"><span class="cv-icone cv-icone--petit" aria-hidden="true"><i class="{{ c.icone }}"></i></span> {{ c.titre }}</h3>
+        <ul class="cv-chips">{% for i in c.items %}<li>{{ i }}</li>{% endfor %}</ul>
+      </article>
+      {% endfor %}
+    </div>
+
+    <div class="cv-grille cv-grille--2 cv-mt">
+      <article class="cv-carte">
+        <h3 class="cv-carte__titre cv-carte__titre--icone"><span class="cv-icone cv-icone--petit" aria-hidden="true"><i class="fa-solid fa-language"></i></span> Langues</h3>
+        {% for l in cv.langues %}
+        <div class="cv-langue">
+          <div class="cv-langue__ligne"><strong>{{ l.nom }}</strong><span>{{ l.niveau }}</span></div>
+          <div class="cv-jauge" role="img" aria-label="{{ l.nom }} : {{ l.niveau }}"><span style="width: {{ l.pourcentage }}%"></span></div>
+        </div>
+        {% endfor %}
+      </article>
+      <article class="cv-carte">
+        <h3 class="cv-carte__titre cv-carte__titre--icone"><span class="cv-icone cv-icone--petit" aria-hidden="true"><i class="fa-solid fa-star"></i></span> Atouts</h3>
+        <ul class="cv-chips cv-chips--atouts">{% for a in cv.atouts %}<li><i class="fa-solid fa-check" aria-hidden="true"></i> {{ a }}</li>{% endfor %}</ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="cv-section" id="centres-dintérêt">
+    <h2 class="cv-h2"><i class="fa-solid fa-heart" aria-hidden="true"></i> Centres d'intérêt</h2>
+    <ul class="cv-interets">
+      {% for i in cv.interets %}<li><i class="{{ i.icone }}" aria-hidden="true"></i><span>{{ i.nom }}</span></li>{% endfor %}
+    </ul>
+  </section>
+
+  <aside class="cv-cta">
+    <div>
+      <h2>Travaillons ensemble</h2>
+      <p>Je suis disponible immédiatement pour une alternance en Lean Manufacturing &amp; Supply Chain.</p>
+    </div>
+    <div class="cv-actions">
+      <a class="cv-btn cv-btn--blanc" href="mailto:{{ cv.email }}?subject=Alternance%20Lean%20%26%20Supply%20Chain"><i class="fa-solid fa-envelope" aria-hidden="true"></i> {{ cv.email }}</a>
+      <a class="cv-btn cv-btn--contour" href="{{ cv.cv_pdf | relative_url }}" download><i class="fa-solid fa-download" aria-hidden="true"></i> CV en PDF</a>
+    </div>
+  </aside>
+
+</div>
