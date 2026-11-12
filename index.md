@@ -5,7 +5,7 @@ description: "Étudiant en 3e année de Bachelor Ingénierie Numérique (UniLaSa
 menubar: menu_bar
 hero_image: assets/imgs/photo-richesse.jpg
 hero_image_alt: Photo de Richesse Otsie
-hero_image_ratio: is-3by4
+hero_image_ratio: is-1by1
 robots: noindex 
 ---
 
