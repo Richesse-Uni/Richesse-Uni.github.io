@@ -1,0 +1,9 @@
+{%- comment -%} Couverture d'une réalisation : capture d'écran si `image`, sinon icône sur fond dégradé. {%- endcomment -%}
+{%- assign r = include.r -%}
+<div class="rea-couv{% unless r.image %} rea-couv--icone{% endunless %}">
+  {%- if r.image -%}
+  <img src="{% if r.image contains '://' %}{{ r.image }}{% else %}{{ r.image | relative_url }}{% endif %}" alt="Aperçu : {{ r.title }}" loading="lazy">
+  {%- else -%}
+  <i class="{{ r.icone | default: 'fa-solid fa-lightbulb' }}" aria-hidden="true"></i>
+  {%- endif -%}
+</div>

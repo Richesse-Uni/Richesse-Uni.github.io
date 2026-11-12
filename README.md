@@ -6,7 +6,7 @@ Site personnel (CV / portfolio) de Richesse Otsie, généré avec [Jekyll](https
 
 - [`index.md`](index.md) — page d'accueil
 - [`parcours.html`](parcours.html) — CV en ligne (expériences, formation, compétences…) ; **le contenu se modifie dans [`_data/cv.yml`](_data/cv.yml)**, styles dans [`assets/css/cv.css`](assets/css/cv.css)
-- [`_products/`](_products) — réalisations/projets
+- [`realisations.html`](realisations.html) + [`_products/`](_products) — portfolio « Mes réalisations » : un fichier par projet (champs `categorie`, `filtre` = pro / web / academique, `ordre`, `icone`, `tags`, `lien`, `image` facultative) ; styles dans [`assets/css/realisations.css`](assets/css/realisations.css)
 - [`outils/fiche-exploitation-journaliere.html`](outils/fiche-exploitation-journaliere.html) — outil de gestion de caisse développé pour Les Boutiques Louis-Prisque
 - [`iec/`](iec) — site d'**Impact Entrepreneurs Chrétiens (IEC)**, accessible sur `/iec/`
 - [`icc-amiens/`](icc-amiens) — site de l'église locale **Impact Centre Chrétien Amiens**, accessible sur `/icc-amiens/`

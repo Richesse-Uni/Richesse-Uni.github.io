@@ -28,7 +28,8 @@ defaults:
       path: ""
       type: products
     values:
-      image: /assets/imgs/projet-placeholder.svg
+      layout: product
+      extra_css: /assets/css/realisations.css
   - scope:
       path: ""
       type: filiales
