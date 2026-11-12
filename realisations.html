@@ -1,0 +1,73 @@
+---
+layout: default
+title: Mes réalisations
+description: "Réalisations de Richesse Otsie : projets professionnels, sites web et projets académiques."
+permalink: /realisations/
+extra_css: /assets/css/realisations.css
+robots: noindex
+---
+{%- assign projets = site.products | sort: "ordre" -%}
+<div class="rea">
+
+  <header class="rea-hero">
+    <p class="rea-hero__eyebrow">Portfolio</p>
+    <h1 class="rea-hero__titre">Mes réalisations</h1>
+    <p class="rea-hero__texte">Des projets concrets, de l'atelier au navigateur : digitalisation d'outils métier, sites web sur mesure et projets d'ingénierie menés pendant ma formation.</p>
+    <ul class="rea-chiffres">
+      <li><strong>{{ projets.size }}</strong> projets</li>
+      <li><strong>{{ projets | where: "filtre", "web" | size }}</strong> sites web</li>
+      <li><strong>{{ projets | where: "filtre", "academique" | size }}</strong> projets académiques</li>
+    </ul>
+  </header>
+
+  <div class="rea-filtres" role="group" aria-label="Filtrer les réalisations">
+    <button type="button" class="is-actif" data-filtre="tous" aria-pressed="true">Tous</button>
+    <button type="button" data-filtre="pro" aria-pressed="false">Projets professionnels</button>
+    <button type="button" data-filtre="web" aria-pressed="false">Sites web</button>
+    <button type="button" data-filtre="academique" aria-pressed="false">Projets académiques</button>
+  </div>
+
+  <div class="rea-grille">
+    {% for r in projets %}
+    <article class="rea-carte" data-filtre="{{ r.filtre }}">
+      <a class="rea-carte__lien" href="{{ r.url | relative_url }}" aria-label="Voir le projet : {{ r.title }}"></a>
+      {% include realisation-couverture.html r=r %}
+      <div class="rea-carte__corps">
+        <span class="rea-cat rea-cat--{{ r.filtre }}">{{ r.categorie }}</span>
+        <h2 class="rea-carte__titre">{{ r.title }}</h2>
+        <p class="rea-carte__texte">{{ r.description }}</p>
+        {% if r.tags %}<ul class="rea-tags">{% for t in r.tags %}<li>{{ t }}</li>{% endfor %}</ul>{% endif %}
+        <div class="rea-carte__pied">
+          <span class="rea-voir">Voir le projet <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+          {% if r.lien %}<a class="rea-ext" href="{{ r.lien | relative_url }}">{{ r.lien_texte | default: "En ligne" }} <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>{% endif %}
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+
+  <aside class="rea-cta">
+    <div>
+      <h2>Un projet en tête ?</h2>
+      <p>Je suis à la recherche d'une alternance en Lean Manufacturing &amp; Supply Chain. Découvrez mon parcours ou écrivez-moi.</p>
+    </div>
+    <div class="rea-cta__actions">
+      <a class="rea-btn rea-btn--blanc" href="{{ '/parcours/' | relative_url }}">Mon parcours</a>
+      <a class="rea-btn" href="mailto:{{ site.data.cv.email }}">Me contacter</a>
+    </div>
+  </aside>
+</div>
+
+<script>
+  (function () {
+    var boutons = document.querySelectorAll('.rea-filtres button');
+    var cartes = document.querySelectorAll('.rea-carte');
+    boutons.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var f = b.getAttribute('data-filtre');
+        boutons.forEach(function (x) { var on = x === b; x.classList.toggle('is-actif', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+        cartes.forEach(function (c) { c.hidden = !(f === 'tous' || c.getAttribute('data-filtre') === f); });
+      });
+    });
+  })();
+</script>

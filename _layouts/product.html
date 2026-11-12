@@ -1,58 +1,39 @@
 ---
 layout: default
 ---
-<div class="columns is-multiline">
-    <div class="column is-6">
-        <figure class="image is-4by3">
-            <img src="{% if page.image contains '://' %}{{ page.image }}{% else %}{{ page.image | relative_url }}{% endif %}">
-        </figure>
+{%- assign projets = site.products | sort: "ordre" -%}
+<div class="rea rea-detail">
+  <a class="rea-retour" href="{{ '/realisations/' | relative_url }}"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Toutes mes réalisations</a>
+
+  <header class="rea-detail__tete">
+    <div class="rea-detail__texte">
+      {% if page.categorie %}<span class="rea-cat rea-cat--{{ page.filtre }}">{{ page.categorie }}</span>{% endif %}
+      <h1 class="rea-detail__titre">{{ page.title }}</h1>
+      {% if page.subtitle %}<p class="rea-detail__sous">{{ page.subtitle }}</p>{% endif %}
+      {% if page.tags %}<ul class="rea-tags">{% for t in page.tags %}<li>{{ t }}</li>{% endfor %}</ul>{% endif %}
+      {% if page.lien %}
+      <a class="rea-btn rea-btn--plein" href="{{ page.lien | relative_url }}">{{ page.lien_texte | default: "Voir en ligne" }} <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+      {% endif %}
     </div>
-
-    <div class="column is-6">
-        <p class="title is-3">{{ page.title }}</p>
-        <p class="subtitle is-3">{{ page.subtitle }}</p>
-        {% if page.price %}
-            <p class="title is-4 has-text-right">{{ page.price }}</p>
-        {% endif %}
-        {% if page.product_code %}
-            <p class="subtitle is-5 has-text-right">{{ page.product_code }}</p>
-        {% endif %}
-
-        {% if page.rating %}
-            {% include rating.html rating=page.rating %}
-        {% endif %}
-
-        {% if page.features %}
-            <div class="content">
-                {% for feature in page.features %}
-                    <p>
-                        <span class="icon">
-                            {% if feature.icon %}
-                                <i class="fas {{ feature.icon }}"></i>
-                            {% else %}
-                                <i class="fas fa-circle fa-xs"></i>
-                            {% endif %}
-                        </span>
-                        <span>{{ feature.label }}</span>
-                    </p>
-                {% endfor %}
-            </div>
-        {% endif %}
+    <div class="rea-detail__visuel">
+      {% include realisation-couverture.html r=page %}
     </div>
+  </header>
 
-    <div class="column is-12">
-        <p class="title is-4">Description</p>
-        <div class="content">
-            {{ content }}
-        </div>
-    </div>
+  <div class="rea-detail__corps content">
+    {{ content }}
+  </div>
 
-    {% if site.data.reviews[page.product_code] %}
-        <div class="column is-12">
-            <p class="title is-4">Reviews</p>
-            {% for review in site.data.reviews[page.product_code] %}
-                {% include review.html %}
-            {% endfor %}
-        </div>
-    {% endif %}
+  {%- comment -%} Navigation vers le projet précédent / suivant {%- endcomment -%}
+  {%- for p in projets -%}
+    {%- if p.url == page.url -%}
+      {%- assign i = forloop.index0 -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign i_prec = i | minus: 1 -%}
+  {%- assign i_suiv = i | plus: 1 -%}
+  <nav class="rea-nav" aria-label="Autres réalisations">
+    {% if i_prec >= 0 %}{% assign p = projets[i_prec] %}<a class="rea-nav__lien" href="{{ p.url | relative_url }}"><small><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Projet précédent</small><strong>{{ p.title }}</strong></a>{% else %}<span></span>{% endif %}
+    {% if i_suiv < projets.size %}{% assign p = projets[i_suiv] %}<a class="rea-nav__lien rea-nav__lien--suiv" href="{{ p.url | relative_url }}"><small>Projet suivant <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></small><strong>{{ p.title }}</strong></a>{% endif %}
+  </nav>
 </div>
