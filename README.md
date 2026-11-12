@@ -4,7 +4,7 @@ Site personnel (CV / portfolio) de Richesse Otsie, généré avec [Jekyll](https
 
 ## Structure
 
-- [`index.md`](index.md) — page d'accueil
+- [`index.html`](index.html) — page d'accueil (présentation, chiffres, atouts, réalisations à la une, parcours en bref) ; textes repris de [`_data/cv.yml`](_data/cv.yml), styles dans [`assets/css/accueil.css`](assets/css/accueil.css)
 - [`parcours.html`](parcours.html) — CV en ligne (expériences, formation, compétences…) ; **le contenu se modifie dans [`_data/cv.yml`](_data/cv.yml)**, styles dans [`assets/css/cv.css`](assets/css/cv.css)
 - [`realisations.html`](realisations.html) + [`_products/`](_products) — portfolio « Mes réalisations » : un fichier par projet (champs `categorie`, `filtre` = pro / web / academique, `ordre`, `icone`, `tags`, `lien`, `image` facultative) ; styles dans [`assets/css/realisations.css`](assets/css/realisations.css)
 - [`outils/fiche-exploitation-journaliere.html`](outils/fiche-exploitation-journaliere.html) — outil de gestion de caisse développé pour Les Boutiques Louis-Prisque
