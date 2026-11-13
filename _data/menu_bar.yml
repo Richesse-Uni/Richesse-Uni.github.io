@@ -1,9 +1,9 @@
 - label: Mon parcours
   items:
-    - name: Formation
-      link: /parcours#formation
     - name: Expériences
       link: /parcours#expériences
+    - name: Formation
+      link: /parcours#formation
     - name: Compétences
       link: /parcours#compétences
     - name: Centres d’intérêt

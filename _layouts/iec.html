@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <title>{% if page.titre_onglet %}{{ page.titre_onglet }}{% else %}{{ page.title }} · {{ site.data.iec.nom }}{% endif %}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.data.iec.slogan }}{% endif %}">
+  <meta property="og:title" content="{{ page.title }} · {{ site.data.iec.nom }}">
+  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.data.iec.slogan }}{% endif %}">
+  <meta property="og:image" content="{{ '/assets/imgs/iec/logo-iec.png' | absolute_url }}">
+  <link rel="icon" type="image/png" href="{{ '/assets/imgs/iec/favicon-iec.png' | relative_url }}">
+  <link rel="apple-touch-icon" href="{{ '/assets/imgs/iec/monogramme-iec.png' | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/iec.css' | relative_url }}">
+</head>
+<body>
+  <a class="iec-skip" href="#contenu">Aller au contenu</a>
+
+  <header class="iec-header">
+    <div class="iec-wrap iec-header__in">
+      <a class="iec-brand" href="{{ '/iec/' | relative_url }}" aria-label="Accueil {{ site.data.iec.nom }}">
+        <img src="{{ '/assets/imgs/iec/monogramme-iec.png' | relative_url }}" alt="" width="40" height="40">
+        <span>{{ site.data.iec.nom }}</span>
+      </a>
+      <button class="iec-burger" type="button" aria-expanded="false" aria-controls="iec-nav" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="iec-nav" class="iec-nav" aria-label="Navigation principale">
+        <a href="{{ '/iec/#vision' | relative_url }}">Vision</a>
+        <a href="{{ '/iec/#sigle' | relative_url }}">Le sigle</a>
+        <a href="{{ '/iec/#but' | relative_url }}">Notre but</a>
+        <a href="{{ '/iec/filiales/' | relative_url }}"{% if page.url contains '/iec/filiales/' %} aria-current="page"{% endif %}>Nos entreprises</a>
+        <a class="iec-btn iec-btn--small" href="{{ '/iec/#contact' | relative_url }}">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu">
+    {{ content }}
+  </main>
+
+  <footer class="iec-footer">
+    <div class="iec-wrap iec-footer__in">
+      <div>
+        <img src="{{ '/assets/imgs/iec/logo-iec.png' | relative_url }}" alt="{{ site.data.iec.nom }}" class="iec-footer__logo" width="1000" height="487" loading="lazy">
+        <p class="iec-muted">{{ site.data.iec.slogan }}</p>
+      </div>
+      <div>
+        <h2 class="iec-footer__title">Nos entreprises</h2>
+        <ul class="iec-footer__list">
+          {% assign filiales_footer = site.filiales | sort: "ordre" %}
+          {% for f in filiales_footer %}<li><a href="{{ f.url | relative_url }}">{{ f.title }}</a></li>{% endfor %}
+        </ul>
+      </div>
+      <div>
+        <h2 class="iec-footer__title">Contact</h2>
+        <ul class="iec-footer__list">
+          <li><a href="mailto:{{ site.data.iec.email }}">{{ site.data.iec.email }}</a></li>
+          {% for r in site.data.iec.reseaux %}{% if r[1] != "" %}<li><a href="{{ r[1] }}" rel="noopener" target="_blank">{{ r[0] | capitalize }}</a></li>{% endif %}{% endfor %}
+        </ul>
+      </div>
+    </div>
+    <p class="iec-wrap iec-footer__copy">© {{ site.time | date: "%Y" }} {{ site.data.iec.nom }} — « Que chacun mette au service des autres le don qu'il a reçu. »</p>
+  </footer>
+
+  <script>
+    (function () {
+      var b = document.querySelector('.iec-burger'), n = document.getElementById('iec-nav');
+      if (!b || !n) return;
+      b.addEventListener('click', function () {
+        var open = n.classList.toggle('is-open');
+        b.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      n.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') { n.classList.remove('is-open'); b.setAttribute('aria-expanded', 'false'); }
+      });
+    })();
+  </script>
+  {% if page.script %}<script>{{ page.script }}</script>{% endif %}
+</body>
+</html>

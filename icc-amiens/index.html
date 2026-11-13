@@ -1,0 +1,256 @@
+---
+layout: icc-amiens
+title: Accueil
+titre_onglet: "ICC Amiens — Impact Centre Chrétien, église locale d'Amiens"
+description: "Impact Centre Chrétien Amiens : une église où l'amour de Dieu transforme des gens ordinaires en champions. Horaires des cultes, vie d'église, première visite et contact."
+permalink: /icc-amiens/
+---
+{%- assign icc = site.data.icc_amiens -%}
+{%- capture adresse_complete -%}{{ icc.adresse }}, {{ icc.code_postal }} {{ icc.ville }}{%- endcapture -%}
+
+<section class="icc-hero">
+  <div class="icc-wrap icc-hero__in">
+    <img class="icc-hero__logo" src="{{ '/assets/imgs/icc-amiens/logo-icc.png' | relative_url }}" alt="" width="180" height="180">
+    <div>
+      <h1 class="icc-hero__titre">
+        <span>Impact Centre</span>
+        <span>Chrétien <em class="icc-tag icc-tag--lg">Amiens</em></span>
+      </h1>
+      <p class="icc-hero__sous">Église locale</p>
+      <p class="icc-hero__slogan">{{ icc.slogan }}</p>
+      <div class="icc-actions">
+        <a class="icc-btn icc-btn--light" href="#cultes">Horaires des cultes</a>
+        <a class="icc-btn icc-btn--ghost" href="#premiere-visite">Première visite ?</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="icc-section" id="qui-sommes-nous">
+  <div class="icc-wrap icc-split">
+    <div>
+      <span class="icc-eyebrow">Bienvenue chez vous</span>
+      <h2>Une famille, <span class="icc-rouge">une vision</span></h2>
+      <p class="icc-lead">ICC Amiens est une église annexe d'<strong>Impact Centre Chrétien</strong>, fondé par le Pasteur Yvan Castanou, rattachée à l'église principale de <strong>{{ icc.eglise_principale }}</strong> et attachée à sa vision.</p>
+      <p>Notre désir : que chacun, quel que soit son parcours, rencontre l'amour de Jésus-Christ, soit transformé par sa Parole et découvre le potentiel que Dieu a placé en lui. Ici, des gens ordinaires deviennent des champions — dans leur foi, leur famille, leurs études et leur travail.</p>
+      <p>Que vous soyez croyant de longue date, en recherche ou simplement curieux, vous êtes le bienvenu.</p>
+      {% if icc.responsables.size > 0 %}
+      <div class="icc-responsables">
+        {% for r in icc.responsables %}
+        <div class="icc-responsable">
+          {% if r.photo %}<img src="{{ r.photo | relative_url }}" alt="" width="64" height="64" loading="lazy">{% endif %}
+          <div><strong>{{ r.nom }}</strong><span>{{ r.role }}</span></div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    <ul class="icc-valeurs" aria-label="Ce que nous vivons">
+      <li><span>01</span><div><h3>L'amour de Dieu</h3><p>Accueillir chacun tel qu'il est, avec la compassion du Christ.</p></div></li>
+      <li><span>02</span><div><h3>La transformation</h3><p>Laisser la Parole changer nos vies de l'intérieur.</p></div></li>
+      <li><span>03</span><div><h3>Des champions</h3><p>Révéler le potentiel de chacun pour impacter Amiens et au-delà.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="icc-section icc-section--alt icc-rattachement" id="une-vision">
+  <div class="icc-wrap">
+    <div class="icc-head icc-head--center">
+      <span class="icc-eyebrow">Une seule vision</span>
+      <h2>Une église annexe, <span class="icc-rouge">une même vision</span></h2>
+      <p class="icc-lead">Comme toutes les églises annexes d'ICC, ICC Amiens est attachée à la vision de l'église principale de {{ icc.eglise_principale }}. Les mêmes valeurs, le même enseignement et la même passion, vécus au cœur d'Amiens.</p>
+    </div>
+    <div class="icc-lien">
+      <div class="icc-lien__eglise icc-lien__eglise--mere">
+        <span class="icc-lien__label">Église principale</span>
+        <strong>ICC {{ icc.eglise_principale }}</strong>
+        <small>{{ icc.eglise_principale_lieu }}</small>
+      </div>
+      <div class="icc-lien__fleche" aria-hidden="true">
+        <span>Vision · Enseignement · Valeurs</span>
+      </div>
+      <div class="icc-lien__eglise">
+        <span class="icc-lien__label">Église annexe</span>
+        <strong>ICC Amiens</strong>
+        <small>{{ icc.ville }} · Somme (80)</small>
+      </div>
+    </div>
+    <ul class="icc-lien__points">
+      <li><strong>Une même vision</strong>Portée par le Pasteur Yvan Castanou et transmise à toutes les églises du réseau.</li>
+      <li><strong>Un même enseignement</strong>La Parole reçue à l'église principale nourrit la vie de l'église locale.</li>
+      <li><strong>Une proximité locale</strong>Une famille à Amiens pour vivre cette vision au quotidien.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="icc-section icc-section--bleu" id="centre-de">
+  <div class="icc-wrap icc-split icc-split--centre">
+    <img class="icc-centre__img" src="{{ '/assets/imgs/icc-amiens/centre-de.jpg' | relative_url }}" alt="Visuel « Impact Centre Chrétien, c'est un centre de… » : un grand C composé de photos de vie d'église, entouré des douze piliers" width="1100" height="1068" loading="lazy">
+    <div>
+      <span class="icc-eyebrow icc-eyebrow--or">Notre ADN</span>
+      <h2>Impact Centre Chrétien, c'est un centre de…</h2>
+      <ol class="icc-piliers">
+        <li>Refuge</li>
+        <li>Transformation</li>
+        <li>Puissance spirituelle</li>
+        <li>Formation</li>
+        <li>Adoration</li>
+        <li>Excellence</li>
+        <li>Édification et d'épanouissement</li>
+        <li>Puissance économique et financière</li>
+        <li>Communion et d'expression</li>
+        <li>En devenir</li>
+        <li>Multiracial</li>
+        <li>Impact</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="icc-section" id="cultes">
+  <div class="icc-wrap">
+    <div class="icc-head">
+      <span class="icc-eyebrow">Nos rendez-vous</span>
+      <h2>Cultes et rencontres</h2>
+      <p class="icc-lead">Venez comme vous êtes : l'entrée est libre et chacun est attendu.</p>
+    </div>
+    <div class="icc-cultes">
+      {% for c in icc.cultes %}
+      <article class="icc-culte{% if c.principal %} icc-culte--principal{% endif %}">
+        <p class="icc-culte__jour">{{ c.jour }}</p>
+        <h3>{{ c.titre }}</h3>
+        <p class="icc-culte__heure">{% if c.heure != "" %}{{ c.heure }}{% else %}Horaire à confirmer{% endif %}</p>
+        <p>{{ c.detail }}</p>
+      </article>
+      {% endfor %}
+    </div>
+
+    <div class="icc-lieu" id="nous-trouver">
+      <div>
+        <span class="icc-eyebrow">Nous trouver</span>
+        <h3>{% if icc.adresse != "" %}{{ adresse_complete }}{% else %}{{ icc.ville }}{% endif %}</h3>
+        {% if icc.adresse != "" %}
+        <p>Le lieu de culte est ouvert à tous. N'hésitez pas à nous contacter si vous avez besoin d'aide pour venir.</p>
+        <a class="icc-btn" href="https://www.google.com/maps/search/?api=1&query={{ adresse_complete | url_encode }}" target="_blank" rel="noopener">Itinéraire</a>
+        {% else %}
+        <p>L'adresse du lieu de culte sera bientôt indiquée ici. En attendant, contactez-nous ou consultez la liste officielle des églises ICC.</p>
+        <div class="icc-actions">
+          <a class="icc-btn" href="#contact">Nous contacter</a>
+          <a class="icc-btn icc-btn--outline" href="{{ icc.adresses_icc }}" target="_blank" rel="noopener">Adresses ICC</a>
+        </div>
+        {% endif %}
+      </div>
+      {% if icc.adresse != "" %}
+      <iframe class="icc-carte" title="Carte : {{ adresse_complete }}" src="https://maps.google.com/maps?q={{ adresse_complete | url_encode }}&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      {% else %}
+      <div class="icc-carte icc-carte--vide" aria-hidden="true"><span>Amiens</span></div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="icc-section icc-section--alt" id="vie-eglise">
+  <div class="icc-wrap">
+    <div class="icc-head icc-head--center">
+      <span class="icc-eyebrow">Vie d'église</span>
+      <h2>Trouvez votre place</h2>
+      <p class="icc-lead">L'église ne s'arrête pas au culte du dimanche : grandissez, servez et tissez des liens toute la semaine.</p>
+    </div>
+    <div class="icc-grille">
+      <article class="icc-carte-vie">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+        <h3>Groupes de maison</h3>
+        <p>Des petits groupes dans les quartiers d'Amiens pour partager la Parole, prier et vivre la communion.</p>
+      </article>
+      <article class="icc-carte-vie">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="3.2"/><path d="M5 21c0-4 3.1-7 7-7s7 3 7 7"/></svg>
+        <h3>Enfants</h3>
+        <p>Pendant le culte, les enfants découvrent Jésus à leur niveau, encadrés par une équipe dédiée.</p>
+      </article>
+      <article class="icc-carte-vie">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+        <h3>Jeunes &amp; étudiants</h3>
+        <p>Amiens est une ville étudiante : un espace pour grandir dans la foi, se former et bâtir des amitiés solides.</p>
+      </article>
+      <article class="icc-carte-vie">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.3-9.2C1.4 8.4 3.6 5 7 5c2 0 3.4 1.1 5 3 1.6-1.9 3-3 5-3 3.4 0 5.6 3.4 4.3 6.8C19.5 16.4 12 21 12 21z"/></svg>
+        <h3>Prière</h3>
+        <p>Des temps de prière réguliers pour porter les sujets de chacun, de l'église et de la ville.</p>
+      </article>
+      <article class="icc-carte-vie">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h12v14H6a2 2 0 0 0-2 2zm0 0a2 2 0 0 0 2 2h12v-4"/></svg>
+        <h3>Formation</h3>
+        <p>Études bibliques et parcours de formation pour devenir un disciple affermi et équipé.</p>
+      </article>
+      <article class="icc-carte-vie">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.2c3.1-.6 6 1.6 6 4.8"/></svg>
+        <h3>Servir</h3>
+        <p>Accueil, louange, technique, médias, enfants… Mettez vos dons au service de Dieu et des autres.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="icc-section" id="premiere-visite">
+  <div class="icc-wrap icc-split icc-split--haut">
+    <div>
+      <span class="icc-eyebrow">Première visite</span>
+      <h2>Vous venez pour <span class="icc-rouge">la première fois</span> ?</h2>
+      <p class="icc-lead">Nous serons heureux de vous accueillir ! Voici ce qui vous attend.</p>
+    </div>
+    <div class="icc-faq">
+      <details open>
+        <summary>Comment se passe un culte ?</summary>
+        <p>Un temps de louange et d'adoration, des annonces, puis une prédication pratique tirée de la Bible. Le culte dure environ deux heures.</p>
+      </details>
+      <details>
+        <summary>Comment dois-je m'habiller ?</summary>
+        <p>Comme vous êtes à l'aise. Il n'y a pas de tenue imposée : l'important, c'est que vous soyez là.</p>
+      </details>
+      <details>
+        <summary>Et mes enfants ?</summary>
+        <p>Un programme adapté est prévu pour eux pendant le culte, encadré par une équipe de confiance.</p>
+      </details>
+      <details>
+        <summary>Qui vais-je rencontrer ?</summary>
+        <p>Une église multiculturelle et chaleureuse : étudiants, familles, professionnels… L'équipe d'accueil sera là pour vous orienter et répondre à vos questions.</p>
+      </details>
+      <details>
+        <summary>Je veux en savoir plus sur la foi</summary>
+        <p>Écrivez-nous ou venez nous voir après le culte : nous prendrons le temps de discuter avec vous, sans pression.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="icc-section icc-section--sombre" id="dons">
+  <div class="icc-wrap icc-dons">
+    <div>
+      <span class="icc-eyebrow icc-eyebrow--or">Dîmes &amp; offrandes</span>
+      <h2>Soutenir l'œuvre de Dieu à Amiens</h2>
+      <figure class="icc-verset">
+        <p>« Que chacun donne comme il l'a résolu en son cœur, sans tristesse ni contrainte ; car Dieu aime celui qui donne avec joie. »</p>
+        <cite>2 Corinthiens 9:7</cite>
+      </figure>
+      <p>Vos dons permettent de faire vivre l'église locale, d'accueillir, de former et d'impacter notre ville.</p>
+    </div>
+    <a class="icc-btn icc-btn--or" href="{{ icc.lien_dons }}" target="_blank" rel="noopener">Faire un don</a>
+  </div>
+</section>
+
+<section class="icc-section" id="contact">
+  <div class="icc-wrap">
+    <div class="icc-cta">
+      <span class="icc-eyebrow">Contact</span>
+      <h2>On vous attend !</h2>
+      <p>Une question, un besoin de prière, envie de nous rejoindre ? Écrivez-nous ou venez nous voir lors d'un culte.</p>
+      <div class="icc-actions icc-actions--center">
+        {% if icc.email != "" %}<a class="icc-btn icc-btn--light" href="mailto:{{ icc.email }}?subject=Contact%20ICC%20Amiens">Nous écrire</a>{% endif %}
+        {% if icc.telephone != "" %}<a class="icc-btn icc-btn--ghost" href="tel:{{ icc.telephone | remove: ' ' }}">{{ icc.telephone }}</a>{% endif %}
+        {% if icc.whatsapp != "" %}<a class="icc-btn icc-btn--ghost" href="{{ icc.whatsapp }}" target="_blank" rel="noopener">WhatsApp</a>{% endif %}
+        {% for r in icc.reseaux %}{% if r[1] != "" %}<a class="icc-btn icc-btn--ghost" href="{{ r[1] }}" target="_blank" rel="noopener">{{ r[0] | capitalize }}</a>{% endif %}{% endfor %}
+        <a class="icc-btn icc-btn--ghost" href="{{ icc.site_icc }}" target="_blank" rel="noopener">Site officiel ICC</a>
+      </div>
+    </div>
+  </div>
+</section>

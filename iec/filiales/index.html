@@ -1,0 +1,56 @@
+---
+layout: iec
+title: Nos entreprises
+description: "Les entreprises du groupe Impact Entrepreneurs Chrétiens (IEC), dans plusieurs domaines, et ce que chacune propose."
+permalink: /iec/filiales/
+---
+{% assign filiales = site.filiales | sort: "ordre" %}
+{% assign domaines = filiales | map: "domaine" | uniq %}
+
+<section class="iec-page-hero">
+  <div class="iec-wrap">
+    <p class="iec-fil"><a href="{{ '/iec/' | relative_url }}">IEC</a> / Nos entreprises</p>
+    <span class="iec-eyebrow">Le groupe IEC</span>
+    <h1 class="iec-argent">Nos entreprises</h1>
+    <p>Chaque entreprise d'IEC sert dans son propre domaine, avec la même vision : impacter le monde par la lumière que nous sommes. Choisis un domaine pour voir ce que nous proposons.</p>
+  </div>
+</section>
+
+<section class="iec-section">
+  <div class="iec-wrap">
+    {% if domaines.size > 1 %}
+    <div class="iec-filtres" role="group" aria-label="Filtrer par domaine">
+      <button class="iec-filtre" type="button" data-filtre="tous" aria-pressed="true">Tous ({{ filiales.size }})</button>
+      {% for d in domaines %}
+      <button class="iec-filtre" type="button" data-filtre="{{ d | slugify }}" aria-pressed="false">{{ d }}</button>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="iec-grille" id="iec-grille">
+      {% for f in filiales %}{% include iec-carte-filiale.html filiale=f %}{% endfor %}
+      <a class="iec-carte iec-carte--ajout" href="mailto:{{ site.data.iec.email }}?subject=Rejoindre%20IEC" data-domaine="tous">
+        <span class="iec-carte__icone">{% include iec-icone.html nom="graine" %}</span>
+        <strong>D'autres entreprises arrivent</strong>
+        <span>Tu portes un projet qui pourrait rejoindre IEC ? Parlons-en.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var boutons = document.querySelectorAll('.iec-filtre');
+    var cartes = document.querySelectorAll('#iec-grille .iec-carte');
+    boutons.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var f = b.getAttribute('data-filtre');
+        boutons.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        cartes.forEach(function (c) {
+          var d = c.getAttribute('data-domaine');
+          c.hidden = !(f === 'tous' || d === f || d === 'tous');
+        });
+      });
+    });
+  })();
+</script>

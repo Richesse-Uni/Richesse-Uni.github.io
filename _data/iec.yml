@@ -1,0 +1,13 @@
+# Informations générales d'Impact Entrepreneurs Chrétiens (IEC).
+# Modifie ces valeurs : elles sont reprises sur toutes les pages de la section /iec/.
+nom: Impact Entrepreneurs Chrétiens
+sigle: IEC
+slogan: "Là où tes projets prennent vie pour servir Dieu et les autres"
+email: impact.entrepreneurs.chretiens@gmail.com
+fondateur: Richesse Otsie
+# Laisse vide ("") un réseau que tu n'utilises pas : le lien ne sera pas affiché.
+reseaux:
+  linkedin: ""
+  instagram: ""
+  facebook: ""
+  whatsapp: ""
