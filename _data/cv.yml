@@ -8,6 +8,23 @@ photo: /assets/imgs/photo-richesse.jpg
 email: otsierichesse20@gmail.com
 linkedin: https://www.linkedin.com/in/richesse-otsie-14b612268
 cv_pdf: /assets/docs/CV_Richesse_Otsie.pdf
+# CV téléchargeables (section « Mes CV » de /parcours/ et boutons de l'accueil).
+# Pour en ajouter un : déposer le PDF dans assets/docs/ et un aperçu dans assets/imgs/cv/.
+cvs:
+  - titre: CV Alternance
+    court: Alternance
+    detail: Alternance Lean Manufacturing & Supply Chain · rythme 1 mois en entreprise / 1 mois en campus
+    fichier: /assets/docs/CV_Richesse_Otsie.pdf
+    nom_fichier: CV_Richesse_OTSIE_Alternance.pdf
+    apercu: /assets/imgs/cv/cv-alternance.jpg
+    icone: fa-solid fa-arrows-rotate
+  - titre: CV Stage 4 mois
+    court: Stage 4 mois
+    detail: Stage de 4 mois en Lean Manufacturing & Supply Chain · disponible immédiatement
+    fichier: /assets/docs/CV_Richesse_Otsie_Stage_4_mois.pdf
+    nom_fichier: CV_Richesse_OTSIE_Stage_4_mois.pdf
+    apercu: /assets/imgs/cv/cv-stage-4-mois.jpg
+    icone: fa-solid fa-briefcase
 badges:
   - icone: fa-solid fa-bolt
     texte: Disponible immédiatement

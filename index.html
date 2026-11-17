@@ -23,8 +23,8 @@ robots: noindex
         {% for b in cv.badges %}<li><i class="{{ b.icone }}" aria-hidden="true"></i> {{ b.texte }}</li>{% endfor %}
       </ul>
       <div class="acc-actions">
-        <a class="acc-btn acc-btn--blanc" href="{{ cv.cv_pdf | relative_url }}" download><i class="fa-solid fa-download" aria-hidden="true"></i> Télécharger mon CV</a>
-        <a class="acc-btn" href="{{ '/realisations/' | relative_url }}"><i class="fa-solid fa-folder-open" aria-hidden="true"></i> Mes réalisations</a>
+        {% for d in cv.cvs %}<a class="acc-btn{% if forloop.first %} acc-btn--blanc{% endif %}" href="{{ d.fichier | relative_url }}" download="{{ d.nom_fichier }}"><i class="fa-solid fa-download" aria-hidden="true"></i> {{ d.titre }}</a>
+        {% endfor %}
         <a class="acc-btn acc-btn--rond" href="mailto:{{ cv.email }}" aria-label="M'écrire un e-mail"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
         <a class="acc-btn acc-btn--rond" href="{{ cv.linkedin }}" target="_blank" rel="noopener" aria-label="Mon profil LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
       </div>
