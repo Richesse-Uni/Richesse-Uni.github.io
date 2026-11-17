@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Accueil
-description: "Richesse Otsie — Étudiant en 3e année de Bachelor Ingénierie Numérique (UniLaSalle Amiens), à la recherche d'une alternance en Lean Manufacturing & Supply Chain. Disponible immédiatement."
+description: "Richesse Otsie — Étudiant en 3e année de Bachelor Ingénierie Numérique (UniLaSalle Amiens), à la recherche d'une alternance ou d'un stage de 4 mois en Lean Manufacturing & Supply Chain. Disponible immédiatement."
 permalink: /
 extra_css:
   - /assets/css/realisations.css
@@ -23,7 +23,7 @@ robots: noindex
         {% for b in cv.badges %}<li><i class="{{ b.icone }}" aria-hidden="true"></i> {{ b.texte }}</li>{% endfor %}
       </ul>
       <div class="acc-actions">
-        {% for d in cv.cvs %}<a class="acc-btn{% if forloop.first %} acc-btn--blanc{% endif %}" href="{{ d.fichier | relative_url }}" download="{{ d.nom_fichier }}"><i class="fa-solid fa-download" aria-hidden="true"></i> {{ d.titre }}</a>
+        {% for d in cv.cvs %}<a class="acc-btn{% if forloop.first %} acc-btn--blanc{% endif %}" href="{{ d.fichier | relative_url }}" target="_blank" rel="noopener" title="Voir mon {{ d.titre }} en ligne"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> {{ d.titre }}</a>
         {% endfor %}
         <a class="acc-btn acc-btn--rond" href="mailto:{{ cv.email }}" aria-label="M'écrire un e-mail"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
         <a class="acc-btn acc-btn--rond" href="{{ cv.linkedin }}" target="_blank" rel="noopener" aria-label="Mon profil LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
@@ -31,7 +31,7 @@ robots: noindex
     </div>
     <div class="acc-hero__visuel">
       <img class="acc-hero__photo" src="{{ cv.photo | relative_url }}" alt="Photo de {{ cv.nom }}" width="320" height="320">
-      <span class="acc-hero__pastille"><span class="acc-point" aria-hidden="true"></span> Disponible pour une alternance</span>
+      <span class="acc-hero__pastille"><span class="acc-point" aria-hidden="true"></span> Disponible : alternance ou stage</span>
     </div>
   </header>
 
@@ -40,7 +40,7 @@ robots: noindex
     <li><strong>{{ cv.experiences.size }}</strong><span>expériences</span></li>
     <li><strong>{{ projets.size }}</strong><span>réalisations</span></li>
     <li><strong>3<sup>e</sup></strong><span>année de Bachelor</span></li>
-    <li><strong>1/1</strong><span>mois entreprise / campus</span></li>
+    <li><strong>2</strong><span>formats : alternance ou stage</span></li>
   </ul>
 
   <!-- ===== Ce que j'apporte ===== -->
@@ -140,10 +140,10 @@ robots: noindex
   <aside class="acc-cta">
     <div>
       <h2>Et si on travaillait ensemble ?</h2>
-      <p>Je suis disponible immédiatement pour une alternance en Lean Manufacturing &amp; Supply Chain, en Hauts-de-France ou en Île-de-France.</p>
+      <p>Je suis disponible immédiatement pour une alternance ou un stage de 4 mois en Lean Manufacturing &amp; Supply Chain, en Hauts-de-France ou en Île-de-France.</p>
     </div>
     <div class="acc-actions">
-      <a class="acc-btn acc-btn--blanc" href="mailto:{{ cv.email }}?subject=Alternance%20Lean%20%26%20Supply%20Chain"><i class="fa-solid fa-envelope" aria-hidden="true"></i> {{ cv.email }}</a>
+      <a class="acc-btn acc-btn--blanc" href="mailto:{{ cv.email }}?subject=Alternance%20ou%20stage%20Lean%20%26%20Supply%20Chain"><i class="fa-solid fa-envelope" aria-hidden="true"></i> {{ cv.email }}</a>
       <a class="acc-btn" href="{{ cv.linkedin }}" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
     </div>
   </aside>

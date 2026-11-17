@@ -2,8 +2,8 @@
 # Modifie ce fichier pour mettre à jour le CV en ligne : la mise en page suit automatiquement.
 
 nom: Richesse OTSIE
-titre: Alternance Lean Manufacturing & Supply Chain
-accroche: "Étudiant en 3e année de Bachelor Ingénierie Numérique (UniLaSalle Amiens), je recherche une alternance pour ma dernière année afin de contribuer à l'amélioration continue des flux de votre entreprise."
+titre: Alternance ou stage · Lean Manufacturing & Supply Chain
+accroche: "Étudiant en 3e année de Bachelor Ingénierie Numérique (UniLaSalle Amiens), je recherche une alternance (dernière année) ou un stage de 4 mois en Lean Manufacturing / Supply Chain afin de contribuer à l'amélioration continue des flux de votre entreprise."
 photo: /assets/imgs/photo-richesse.jpg
 email: otsierichesse20@gmail.com
 linkedin: https://www.linkedin.com/in/richesse-otsie-14b612268
@@ -29,7 +29,9 @@ badges:
   - icone: fa-solid fa-bolt
     texte: Disponible immédiatement
   - icone: fa-solid fa-arrows-rotate
-    texte: "Rythme : 1 mois entreprise / 1 mois campus"
+    texte: "Alternance : 1 mois entreprise / 1 mois campus"
+  - icone: fa-solid fa-calendar-days
+    texte: "Stage : 4 mois"
   - icone: fa-solid fa-location-dot
     texte: Amiens (80) · Mobile Hauts-de-France & Île-de-France
 
@@ -61,10 +63,10 @@ experiences:
   - periode: "2024 – 2025"
     titre: Projet entrepreneurial — Mode durable et responsable
     structure: Les Entreps
-    detail: 6 mois
+    detail: 6 mois · lancement en cours
     icone: fa-solid fa-shirt
     missions:
-      - Conception et lancement d'un projet de mode durable basé sur l'upcycling
+      - Conception d'un projet de mode durable basé sur l'upcycling (lancement en cours)
       - Planification de la production, organisation des flux et des postes de travail
       - Équilibrage des charges et définition des objectifs de production
       - Gestion des stocks et organisation des flux logistiques
