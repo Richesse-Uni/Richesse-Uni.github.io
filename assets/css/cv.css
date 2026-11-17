@@ -173,6 +173,29 @@ html { scroll-behavior: smooth; scroll-padding-top: 120px; }
 .cv .cv-cta h2 { color: #fff; font-size: 1.6rem; margin: 0 0 .3rem; }
 .cv-cta p { margin: 0; opacity: .85; }
 
+/* ---------- Mes CV ---------- */
+.cv-doc { display: flex; gap: 22px; align-items: center; }
+.cv-doc__apercu {
+  flex-shrink: 0; width: 150px; border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--ligne); box-shadow: 0 10px 26px rgba(31, 36, 48, .14);
+  transition: transform .2s ease;
+}
+.cv-doc__apercu:hover { transform: translateY(-3px) rotate(-1deg); }
+.cv-doc__apercu img { display: block; width: 100%; height: auto; }
+.cv-doc__texte { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.cv-doc__detail { margin: 0 0 10px; color: var(--gris); font-size: .95rem; }
+.cv-periode i { margin-right: .25em; }
+.cv-doc__actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.cv-mini {
+  display: inline-flex; align-items: center; gap: .45em; padding: .5em 1em; border-radius: 999px;
+  font-weight: 600; font-size: .9rem; text-decoration: none;
+  color: var(--rouge-fonce); border: 1.5px solid var(--rouge);
+  transition: background .15s ease, color .15s ease;
+}
+.cv-mini:hover { background: var(--rouge-doux); color: var(--rouge-fonce); }
+.cv-mini--plein { background: var(--rouge); color: #fff; }
+.cv-mini--plein:hover { background: var(--rouge-fonce); color: #fff; }
+
 /* ---------- Mobile ---------- */
 @media (max-width: 768px) {
   .cv-hero { flex-direction: column; align-items: flex-start; padding: 28px 22px; gap: 20px; }
@@ -189,4 +212,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 120px; }
   .cv-sommaire a { padding: .35em .7em; font-size: .85rem; }
   .cv-cta { padding: 26px 22px; }
   .cv-btn { width: 100%; justify-content: center; }
+  .cv-doc__apercu { width: 110px; }
+  .cv-doc { gap: 16px; }
 }

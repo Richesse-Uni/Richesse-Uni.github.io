@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Mon parcours
-description: "Parcours de Richesse Otsie — Bachelor Ingénierie Numérique (UniLaSalle Amiens), à la recherche d'une alternance en Lean Manufacturing & Supply Chain."
+description: "Parcours de Richesse Otsie — Bachelor Ingénierie Numérique (UniLaSalle Amiens), à la recherche d'une alternance ou d'un stage de 4 mois en Lean Manufacturing & Supply Chain."
 permalink: /parcours/
 extra_css: /assets/css/cv.css
 robots: noindex
@@ -20,7 +20,8 @@ robots: noindex
         {% for b in cv.badges %}<li><i class="{{ b.icone }}" aria-hidden="true"></i> {{ b.texte }}</li>{% endfor %}
       </ul>
       <div class="cv-actions">
-        <a class="cv-btn cv-btn--plein" href="{{ cv.cv_pdf | relative_url }}" download><i class="fa-solid fa-download" aria-hidden="true"></i> Télécharger mon CV</a>
+        {% for d in cv.cvs %}<a class="cv-btn{% if forloop.first %} cv-btn--plein{% endif %}" href="{{ d.fichier | relative_url }}" target="_blank" rel="noopener" title="Voir mon {{ d.titre }} en ligne"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> {{ d.titre }}</a>
+        {% endfor %}
         <a class="cv-btn" href="mailto:{{ cv.email }}"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Me contacter</a>
         <a class="cv-btn" href="{{ cv.linkedin }}" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
       </div>
@@ -28,11 +29,34 @@ robots: noindex
   </header>
 
   <nav class="cv-sommaire" aria-label="Sections du parcours">
+    <a href="#mes-cv">Mes CV</a>
     <a href="#expériences">Expériences</a>
     <a href="#formation">Formation</a>
     <a href="#compétences">Compétences</a>
     <a href="#centres-dintérêt">Centres d'intérêt</a>
   </nav>
+
+  <section class="cv-section" id="mes-cv">
+    <h2 class="cv-h2"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> Mes CV</h2>
+    <div class="cv-grille cv-grille--2">
+      {% for d in cv.cvs %}
+      <article class="cv-carte cv-doc">
+        <a class="cv-doc__apercu" href="{{ d.fichier | relative_url }}" target="_blank" rel="noopener" aria-label="Ouvrir le {{ d.titre }}">
+          <img src="{{ d.apercu | relative_url }}" alt="Aperçu du {{ d.titre }}" width="662" height="936" loading="lazy">
+        </a>
+        <div class="cv-doc__texte">
+          <span class="cv-periode"><i class="{{ d.icone }}" aria-hidden="true"></i> {{ d.court }}</span>
+          <h3 class="cv-carte__titre">{{ d.titre }}</h3>
+          <p class="cv-doc__detail">{{ d.detail }}</p>
+          <div class="cv-doc__actions">
+            <a class="cv-mini cv-mini--plein" href="{{ d.fichier | relative_url }}" download="{{ d.nom_fichier }}"><i class="fa-solid fa-download" aria-hidden="true"></i> Télécharger</a>
+            <a class="cv-mini" href="{{ d.fichier | relative_url }}" target="_blank" rel="noopener"><i class="fa-solid fa-eye" aria-hidden="true"></i> Voir</a>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
 
   <section class="cv-section" id="expériences">
     <h2 class="cv-h2"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Expériences</h2>
@@ -124,11 +148,12 @@ robots: noindex
   <aside class="cv-cta">
     <div>
       <h2>Travaillons ensemble</h2>
-      <p>Je suis disponible immédiatement pour une alternance en Lean Manufacturing &amp; Supply Chain.</p>
+      <p>Je suis disponible immédiatement pour une alternance ou un stage de 4 mois en Lean Manufacturing &amp; Supply Chain.</p>
     </div>
     <div class="cv-actions">
-      <a class="cv-btn cv-btn--blanc" href="mailto:{{ cv.email }}?subject=Alternance%20Lean%20%26%20Supply%20Chain"><i class="fa-solid fa-envelope" aria-hidden="true"></i> {{ cv.email }}</a>
-      <a class="cv-btn cv-btn--contour" href="{{ cv.cv_pdf | relative_url }}" download><i class="fa-solid fa-download" aria-hidden="true"></i> CV en PDF</a>
+      <a class="cv-btn cv-btn--blanc" href="mailto:{{ cv.email }}?subject=Alternance%20ou%20stage%20Lean%20%26%20Supply%20Chain"><i class="fa-solid fa-envelope" aria-hidden="true"></i> {{ cv.email }}</a>
+      {% for d in cv.cvs %}<a class="cv-btn cv-btn--contour" href="{{ d.fichier | relative_url }}" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> {{ d.titre }}</a>
+      {% endfor %}
     </div>
   </aside>
 
